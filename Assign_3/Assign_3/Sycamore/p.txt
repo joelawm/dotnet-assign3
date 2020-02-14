@@ -1,0 +1,20 @@
+﻿10100	Turing	Alan	Computer Scientist	1912	6	23	35671	93674
+10000	Clark	Annie	Musician	1982	9	28	64815
+10001	Meline	Jaime	Rapper	1975	3	2	51846
+10010	Render	Michael	Rapper	1975	4	20	91135
+10011	Bjornsson	Hafthor	Strongman	1988	11	26	53119
+10101	von Neumann	John	Mathematician	1903	12	28	17653
+10110	Babbage	Charles	Inventor	1791	12	26	25338
+10111	Hopper	Grace	Computer Scientist	1906	12	9	83352
+11000	Lovelace	Ada	Mathematician	1815	12	10	47639
+11001	Ramanujan	Srinivasa	Mathematician	1887	12	22	93674
+11010	Euler	Leonhard	Mathematician	1707	4	15	62195
+11011	Jackson	Elly	Musician	1988	3	12	59126
+11100	Miyawaki	Mitski	Musician	1990	9	27	47319
+11101	Bell	Burton	Musician	1969	2	19	91374
+11110	Bavitz	Ian	Hip-hop Artist	1976	6	5	34996
+11111	Hansen	Beck	Musician	1970	7	8	69943
+2	Spence	Eva	Musician	1990	5	18	12995
+12	Shaw	Brian	Strongman	1982	2	26	17653
+20	Kieliszkowski	Mateusz	Strongman	1993	8	12	47639
+21	Licis	Martins	Strongman	1990	9	28	59126

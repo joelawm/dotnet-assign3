@@ -1,0 +1,8 @@
+8623	1111	30	30	1111 BigMac Ln.	DeKalb	Illinois	60115	T:210000	McDonald's	3	2001	14
+3268	10	82	40	9873 Market Place	DeKalb	Illinois	60115	F	Jewel	0	1995	21
+4351	1101	125	125	9000 Main St.	DeKalb	Illinois	60115	T:182000	First Midwest Bank	1	1992	2
+1534	101	216	200	7653 Syracuse Rd.	DeKalb	Illinois	60115	F	Mario's Plumbing Services	2	1983	0
+2673	0	50	129	5523 Brigham Way	DeKalb	Illinois	60115	T:112000	Target	4	2003	8
+3762	11011	64	32	2690 Michigan St.	DeKalb	Illinois	60115	T:310000	In 'n Out Burger	3	2010	12
+6357	2	50	8	8762 Bank St.	DeKalb	Illinois	60115	F	Castle Bank	1	1993	0
+7536	111	128	125	7500 Main St.	DeKalb	Illinois	60115	T:130000	Kohl's	4	1995	3

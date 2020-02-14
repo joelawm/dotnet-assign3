@@ -1,0 +1,4 @@
+451	10100	50	50	1729 Learning Rd.	Sycamore	Illinois	60178	T:300000	North Elementary School	1970	100
+154	10100	75	75	4000 Drama Ln.	Sycamore	Illinois	60178	F	Sycamore High School	1970	350
+283	10100	100	100	2727 Barbs Way	Sycamore	Illinois	60178	F	Waubonsee Community College	1990	2790
+382	10100	150	150	1425 W. Lincoln Hwy.	Sycamore	Illinois	60178	F	Norther Illinois University	1895	20000

@@ -1,0 +1,8 @@
+5631	10110	30	50	1111 BigMac Ln.	Sycamore	Illinois	60178	T:173000	McDonald's	3	2011	11
+1365	10000	40	82	9873 Market Place	Sycamore	Illinois	60178	T:201000	Jewel	0	1985	11
+2804	10101	76	125	9000 Main St.	Sycamore	Illinois	60178	F	First Midwest Bank	1	1982	4
+4082	2	200	216	7653 Syracuse Rd.	Sycamore	Illinois	60178	F	Mario's Plumbing Services	2	1993	0
+3619	0	129	50	5523 Brigham Way	Sycamore	Illinois	60178	T:132000	Target	4	2013	0
+9163	1001	32	64	2690 Michigan St.	Sycamore	Illinois	60178	F	In 'n Out Burger	3	2000	9
+7214	11111	8	50	8762 Bank St.	Sycamore	Illinois	60178	T:195000	Castle Bank	1	1983	5
+4127	11000	125	128	7500 Main St.	Sycamore	Illinois	60178	T:150000	Kohl's	4	1985	2
