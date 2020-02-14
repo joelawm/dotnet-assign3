@@ -1,0 +1,4 @@
+862	0	50	50	1729 Learning Rd.	DeKalb	Illinois	60115	T:225000	Gwendolyn Brooks Elementary School	1970	100
+268	0	75	75	4000 Drama Ln.	DeKalb	Illinois	60115	F	DeKalb High School	1970	350
+341	0	100	100	2727 Barbs Way	DeKalb	Illinois	60115	F	Kishwaukee Community College	1990	2790
+143	0	150	150	1425 W. Lincoln Hwy.	DeKalb	Illinois	60115	F	Northern Illinois University	1895	20000

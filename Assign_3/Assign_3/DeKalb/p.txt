@@ -1,0 +1,16 @@
+﻿0	DeLeon	Typhon	Turd Farmer	1986	1	27	98213	10378
+1	Skywalker	Lilth	Vault Hunter	1990	4	1	31289
+10	Skywalker	Brick	Vault Hunter	1984	6	16	42865
+11	Skywalker	Maya	Vault Hunter	1991	1	15	56824
+100	Lecter	Hannibal	Chef	1979	3	28	87301
+101	Graham	William	Special Agent	1980	10	17	10378
+110	Crawford	Jack	Director	1968	2	20	72218
+111	Verger	Mason	Pig Farmer	1984	5	25	81227
+1000	Katz	Beverly	Forensic Investigator	1990	7	17	45218
+1001	Lounds	Freddy	Reporter	1993	4	11	29762
+1010	Evergarden	Violet	Typist	2001	10	4	26792
+1011	Hodgins	Claudia	Business Owner	1990	11	25	51735
+1100	Tenma	Kenzo	Neurosurgeon	1958	1	2	53715
+1101	Liebert	Johan	Inspirational Speaker	1967	6	6	31289
+1110	Lunge	Heinrich	Inspector	1960	5	4	42865
+1111	Grimmer	Wolfgang	Spy	1967	12	12	56824
