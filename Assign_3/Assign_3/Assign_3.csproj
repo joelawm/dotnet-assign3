@@ -79,5 +79,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="DeKalb\a.txt" />
+    <Content Include="DeKalb\b.txt" />
+    <Content Include="DeKalb\p.txt" />
+    <Content Include="DeKalb\r.txt" />
+    <Content Include="DeKalb\s.txt" />
+    <Content Include="Sycamore\a.txt" />
+    <Content Include="Sycamore\b.txt" />
+    <Content Include="Sycamore\p.txt" />
+    <Content Include="Sycamore\r.txt" />
+    <Content Include="Sycamore\s.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
