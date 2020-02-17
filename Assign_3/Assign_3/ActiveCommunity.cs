@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Assign_2
+namespace Assign_3
 {
     class ActiveCommunity
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assign_2
+namespace Assign_3
 {
     //community class
     public class Community : IComparable, IEnumerable

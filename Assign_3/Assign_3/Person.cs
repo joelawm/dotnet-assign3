@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assign_2
+namespace Assign_3
 {
     //person class
     public class Person : IComparable
