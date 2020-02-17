@@ -3,9 +3,9 @@ namespace Assign_3
     public class ActiveDekalb
     {
         //input data for Deklab and Sycamore 
-        private const string DekalbPersonFile = "../../dp.txt";
-        private const string DekalbHouseFile = "../../dr.txt";
-        private const string DekalbApartmentFile = "../../da.txt";
+        private const string DekalbPersonFile = "../../Dekalb/p.txt";
+        private const string DekalbHouseFile = "../../Dekalb/r.txt";
+        private const string DekalbApartmentFile = "../../Dekalb/a.txt";
 
         //set the comunity to active
         public Community ActiveDekalb_Files()
