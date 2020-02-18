@@ -90,9 +90,9 @@
             this.PriceRangeGroupBox.Controls.Add(this.ResidentialtCheckBox);
             this.PriceRangeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PriceRangeGroupBox.Location = new System.Drawing.Point(24, 23);
-            this.PriceRangeGroupBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PriceRangeGroupBox.Margin = new System.Windows.Forms.Padding(6);
             this.PriceRangeGroupBox.Name = "PriceRangeGroupBox";
-            this.PriceRangeGroupBox.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PriceRangeGroupBox.Padding = new System.Windows.Forms.Padding(6);
             this.PriceRangeGroupBox.Size = new System.Drawing.Size(976, 294);
             this.PriceRangeGroupBox.TabIndex = 0;
             this.PriceRangeGroupBox.TabStop = false;
@@ -102,7 +102,7 @@
             // 
             this.PriceQueryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PriceQueryButton.Location = new System.Drawing.Point(692, 46);
-            this.PriceQueryButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PriceQueryButton.Margin = new System.Windows.Forms.Padding(6);
             this.PriceQueryButton.Name = "PriceQueryButton";
             this.PriceQueryButton.Size = new System.Drawing.Size(150, 44);
             this.PriceQueryButton.TabIndex = 7;
@@ -112,45 +112,47 @@
             // MaxPriceTrackBar
             // 
             this.MaxPriceTrackBar.Location = new System.Drawing.Point(202, 198);
-            this.MaxPriceTrackBar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.MaxPriceTrackBar.Margin = new System.Windows.Forms.Padding(6);
             this.MaxPriceTrackBar.Name = "MaxPriceTrackBar";
-            this.MaxPriceTrackBar.Size = new System.Drawing.Size(208, 90);
+            this.MaxPriceTrackBar.Size = new System.Drawing.Size(308, 90);
             this.MaxPriceTrackBar.TabIndex = 6;
+            this.MaxPriceTrackBar.Scroll += new System.EventHandler(this.MaxPriceTrackBar_Scroll);
             // 
             // MaxPriceLabel
             // 
             this.MaxPriceLabel.AutoSize = true;
-            this.MaxPriceLabel.Location = new System.Drawing.Point(218, 158);
+            this.MaxPriceLabel.Location = new System.Drawing.Point(214, 162);
             this.MaxPriceLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.MaxPriceLabel.Name = "MaxPriceLabel";
-            this.MaxPriceLabel.Size = new System.Drawing.Size(156, 36);
+            this.MaxPriceLabel.Size = new System.Drawing.Size(165, 36);
             this.MaxPriceLabel.TabIndex = 5;
-            this.MaxPriceLabel.Text = "Max Price";
+            this.MaxPriceLabel.Text = "Max Price:";
             // 
             // MinPriceLabel
             // 
             this.MinPriceLabel.AutoSize = true;
-            this.MinPriceLabel.Location = new System.Drawing.Point(218, 46);
+            this.MinPriceLabel.Location = new System.Drawing.Point(214, 49);
             this.MinPriceLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.MinPriceLabel.Name = "MinPriceLabel";
-            this.MinPriceLabel.Size = new System.Drawing.Size(149, 36);
+            this.MinPriceLabel.Size = new System.Drawing.Size(158, 36);
             this.MinPriceLabel.TabIndex = 4;
-            this.MinPriceLabel.Text = "Min Price";
+            this.MinPriceLabel.Text = "Min Price:";
             // 
             // MinPriceTrackBar
             // 
             this.MinPriceTrackBar.Location = new System.Drawing.Point(202, 87);
-            this.MinPriceTrackBar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.MinPriceTrackBar.Margin = new System.Windows.Forms.Padding(6);
             this.MinPriceTrackBar.Name = "MinPriceTrackBar";
-            this.MinPriceTrackBar.Size = new System.Drawing.Size(208, 90);
+            this.MinPriceTrackBar.Size = new System.Drawing.Size(313, 90);
             this.MinPriceTrackBar.TabIndex = 3;
+            this.MinPriceTrackBar.Scroll += new System.EventHandler(this.MinPriceTrackBar_Scroll);
             // 
             // SchoolCheckBox
             // 
             this.SchoolCheckBox.AutoSize = true;
             this.SchoolCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SchoolCheckBox.Location = new System.Drawing.Point(14, 158);
-            this.SchoolCheckBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.SchoolCheckBox.Name = "SchoolCheckBox";
             this.SchoolCheckBox.Size = new System.Drawing.Size(140, 40);
             this.SchoolCheckBox.TabIndex = 2;
@@ -162,7 +164,7 @@
             this.BuisnessCheckBox.AutoSize = true;
             this.BuisnessCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BuisnessCheckBox.Location = new System.Drawing.Point(14, 102);
-            this.BuisnessCheckBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BuisnessCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.BuisnessCheckBox.Name = "BuisnessCheckBox";
             this.BuisnessCheckBox.Size = new System.Drawing.Size(169, 40);
             this.BuisnessCheckBox.TabIndex = 1;
@@ -174,7 +176,7 @@
             this.ResidentialtCheckBox.AutoSize = true;
             this.ResidentialtCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ResidentialtCheckBox.Location = new System.Drawing.Point(14, 46);
-            this.ResidentialtCheckBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ResidentialtCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.ResidentialtCheckBox.Name = "ResidentialtCheckBox";
             this.ResidentialtCheckBox.Size = new System.Drawing.Size(188, 40);
             this.ResidentialtCheckBox.TabIndex = 0;
@@ -190,9 +192,9 @@
             this.SchoolRangeGroupBox.Controls.Add(this.SchoolCombobox);
             this.SchoolRangeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SchoolRangeGroupBox.Location = new System.Drawing.Point(24, 329);
-            this.SchoolRangeGroupBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolRangeGroupBox.Margin = new System.Windows.Forms.Padding(6);
             this.SchoolRangeGroupBox.Name = "SchoolRangeGroupBox";
-            this.SchoolRangeGroupBox.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolRangeGroupBox.Padding = new System.Windows.Forms.Padding(6);
             this.SchoolRangeGroupBox.Size = new System.Drawing.Size(978, 169);
             this.SchoolRangeGroupBox.TabIndex = 1;
             this.SchoolRangeGroupBox.TabStop = false;
@@ -202,7 +204,7 @@
             // 
             this.SchoolQueryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SchoolQueryButton.Location = new System.Drawing.Point(692, 87);
-            this.SchoolQueryButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolQueryButton.Margin = new System.Windows.Forms.Padding(6);
             this.SchoolQueryButton.Name = "SchoolQueryButton";
             this.SchoolQueryButton.Size = new System.Drawing.Size(150, 44);
             this.SchoolQueryButton.TabIndex = 4;
@@ -213,7 +215,7 @@
             // 
             this.SchoolDistanceUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SchoolDistanceUpDown.Location = new System.Drawing.Point(384, 88);
-            this.SchoolDistanceUpDown.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolDistanceUpDown.Margin = new System.Windows.Forms.Padding(6);
             this.SchoolDistanceUpDown.Name = "SchoolDistanceUpDown";
             this.SchoolDistanceUpDown.Size = new System.Drawing.Size(270, 41);
             this.SchoolDistanceUpDown.TabIndex = 3;
@@ -244,7 +246,7 @@
             // 
             this.SchoolCombobox.FormattingEnabled = true;
             this.SchoolCombobox.Location = new System.Drawing.Point(12, 87);
-            this.SchoolCombobox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolCombobox.Margin = new System.Windows.Forms.Padding(6);
             this.SchoolCombobox.Name = "SchoolCombobox";
             this.SchoolCombobox.Size = new System.Drawing.Size(328, 44);
             this.SchoolCombobox.TabIndex = 0;
@@ -263,9 +265,9 @@
             this.ParametersGroupBox.Controls.Add(this.HouseCheckBox);
             this.ParametersGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ParametersGroupBox.Location = new System.Drawing.Point(28, 690);
-            this.ParametersGroupBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ParametersGroupBox.Margin = new System.Windows.Forms.Padding(6);
             this.ParametersGroupBox.Name = "ParametersGroupBox";
-            this.ParametersGroupBox.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ParametersGroupBox.Padding = new System.Windows.Forms.Padding(6);
             this.ParametersGroupBox.Size = new System.Drawing.Size(978, 183);
             this.ParametersGroupBox.TabIndex = 2;
             this.ParametersGroupBox.TabStop = false;
@@ -276,7 +278,7 @@
             this.GarageCheckBox.AutoSize = true;
             this.GarageCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GarageCheckBox.Location = new System.Drawing.Point(524, 46);
-            this.GarageCheckBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.GarageCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.GarageCheckBox.Name = "GarageCheckBox";
             this.GarageCheckBox.Size = new System.Drawing.Size(145, 40);
             this.GarageCheckBox.TabIndex = 8;
@@ -287,18 +289,19 @@
             // 
             this.ParametersQueryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ParametersQueryButton.Location = new System.Drawing.Point(688, 46);
-            this.ParametersQueryButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ParametersQueryButton.Margin = new System.Windows.Forms.Padding(6);
             this.ParametersQueryButton.Name = "ParametersQueryButton";
             this.ParametersQueryButton.Size = new System.Drawing.Size(150, 44);
             this.ParametersQueryButton.TabIndex = 5;
             this.ParametersQueryButton.Text = "Query";
             this.ParametersQueryButton.UseVisualStyleBackColor = true;
+            this.ParametersQueryButton.Click += new System.EventHandler(this.ParametersQueryButton_Click);
             // 
             // SqFtUpDown
             // 
             this.SqFtUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SqFtUpDown.Location = new System.Drawing.Point(366, 94);
-            this.SqFtUpDown.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SqFtUpDown.Margin = new System.Windows.Forms.Padding(6);
             this.SqFtUpDown.Name = "SqFtUpDown";
             this.SqFtUpDown.Size = new System.Drawing.Size(140, 41);
             this.SqFtUpDown.TabIndex = 7;
@@ -318,7 +321,7 @@
             // 
             this.BathUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BathUpDown.Location = new System.Drawing.Point(272, 94);
-            this.BathUpDown.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BathUpDown.Margin = new System.Windows.Forms.Padding(6);
             this.BathUpDown.Name = "BathUpDown";
             this.BathUpDown.Size = new System.Drawing.Size(68, 41);
             this.BathUpDown.TabIndex = 5;
@@ -338,7 +341,7 @@
             // 
             this.BedUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BedUpDown.Location = new System.Drawing.Point(192, 94);
-            this.BedUpDown.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BedUpDown.Margin = new System.Windows.Forms.Padding(6);
             this.BedUpDown.Name = "BedUpDown";
             this.BedUpDown.Size = new System.Drawing.Size(68, 41);
             this.BedUpDown.TabIndex = 3;
@@ -359,7 +362,7 @@
             this.ApartmentCheckBox.AutoSize = true;
             this.ApartmentCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ApartmentCheckBox.Location = new System.Drawing.Point(12, 98);
-            this.ApartmentCheckBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ApartmentCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.ApartmentCheckBox.Name = "ApartmentCheckBox";
             this.ApartmentCheckBox.Size = new System.Drawing.Size(183, 40);
             this.ApartmentCheckBox.TabIndex = 1;
@@ -371,7 +374,7 @@
             this.HouseCheckBox.AutoSize = true;
             this.HouseCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HouseCheckBox.Location = new System.Drawing.Point(12, 44);
-            this.HouseCheckBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.HouseCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.HouseCheckBox.Name = "HouseCheckBox";
             this.HouseCheckBox.Size = new System.Drawing.Size(133, 40);
             this.HouseCheckBox.TabIndex = 0;
@@ -383,9 +386,9 @@
             this.TownersGroupBox.Controls.Add(this.TownersQueryButton);
             this.TownersGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TownersGroupBox.Location = new System.Drawing.Point(28, 885);
-            this.TownersGroupBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.TownersGroupBox.Margin = new System.Windows.Forms.Padding(6);
             this.TownersGroupBox.Name = "TownersGroupBox";
-            this.TownersGroupBox.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.TownersGroupBox.Padding = new System.Windows.Forms.Padding(6);
             this.TownersGroupBox.Size = new System.Drawing.Size(978, 112);
             this.TownersGroupBox.TabIndex = 2;
             this.TownersGroupBox.TabStop = false;
@@ -395,7 +398,7 @@
             // 
             this.TownersQueryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TownersQueryButton.Location = new System.Drawing.Point(688, 44);
-            this.TownersQueryButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.TownersQueryButton.Margin = new System.Windows.Forms.Padding(6);
             this.TownersQueryButton.Name = "TownersQueryButton";
             this.TownersQueryButton.Size = new System.Drawing.Size(150, 44);
             this.TownersQueryButton.TabIndex = 9;
@@ -416,7 +419,7 @@
             // QueryOutputTextbox
             // 
             this.QueryOutputTextbox.Location = new System.Drawing.Point(1018, 58);
-            this.QueryOutputTextbox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.QueryOutputTextbox.Margin = new System.Windows.Forms.Padding(6);
             this.QueryOutputTextbox.Multiline = true;
             this.QueryOutputTextbox.Name = "QueryOutputTextbox";
             this.QueryOutputTextbox.Size = new System.Drawing.Size(1048, 935);
@@ -431,9 +434,9 @@
             this.BusinessRangeGroupBox.Controls.Add(this.ForSaleCombobox);
             this.BusinessRangeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BusinessRangeGroupBox.Location = new System.Drawing.Point(24, 510);
-            this.BusinessRangeGroupBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BusinessRangeGroupBox.Margin = new System.Windows.Forms.Padding(6);
             this.BusinessRangeGroupBox.Name = "BusinessRangeGroupBox";
-            this.BusinessRangeGroupBox.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BusinessRangeGroupBox.Padding = new System.Windows.Forms.Padding(6);
             this.BusinessRangeGroupBox.Size = new System.Drawing.Size(978, 169);
             this.BusinessRangeGroupBox.TabIndex = 5;
             this.BusinessRangeGroupBox.TabStop = false;
@@ -443,18 +446,19 @@
             // 
             this.BusinessQueryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BusinessQueryButton.Location = new System.Drawing.Point(692, 87);
-            this.BusinessQueryButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BusinessQueryButton.Margin = new System.Windows.Forms.Padding(6);
             this.BusinessQueryButton.Name = "BusinessQueryButton";
             this.BusinessQueryButton.Size = new System.Drawing.Size(150, 44);
             this.BusinessQueryButton.TabIndex = 4;
             this.BusinessQueryButton.Text = "Query";
             this.BusinessQueryButton.UseVisualStyleBackColor = true;
+            this.BusinessQueryButton.Click += new System.EventHandler(this.BusinessQueryButton_Click);
             // 
             // BusinessDistanceUpDown
             // 
             this.BusinessDistanceUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BusinessDistanceUpDown.Location = new System.Drawing.Point(384, 88);
-            this.BusinessDistanceUpDown.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BusinessDistanceUpDown.Margin = new System.Windows.Forms.Padding(6);
             this.BusinessDistanceUpDown.Name = "BusinessDistanceUpDown";
             this.BusinessDistanceUpDown.Size = new System.Drawing.Size(270, 41);
             this.BusinessDistanceUpDown.TabIndex = 3;
@@ -485,7 +489,7 @@
             // 
             this.ForSaleCombobox.FormattingEnabled = true;
             this.ForSaleCombobox.Location = new System.Drawing.Point(12, 87);
-            this.ForSaleCombobox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ForSaleCombobox.Margin = new System.Windows.Forms.Padding(6);
             this.ForSaleCombobox.MaxDropDownItems = 10;
             this.ForSaleCombobox.Name = "ForSaleCombobox";
             this.ForSaleCombobox.Size = new System.Drawing.Size(328, 44);
@@ -504,7 +508,7 @@
             this.Controls.Add(this.ParametersGroupBox);
             this.Controls.Add(this.SchoolRangeGroupBox);
             this.Controls.Add(this.PriceRangeGroupBox);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
             this.Text = "Form1";
             this.PriceRangeGroupBox.ResumeLayout(false);
