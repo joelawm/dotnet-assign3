@@ -8,32 +8,29 @@ namespace Assign_3
 {
     public class Business : Property
     {
-        //variables for class
-        private string name;
-        private readonly BusinessType _type;
-        private readonly string _yearEst;
-        private uint activeRecruitment;
+        string name;
+        readonly BusinessType type;
+        readonly string yearEstablished;
+        uint activeRecruitment;
 
-        public enum BusinessType { Grocery, Bank, Repair, FastFood, DepartmentStore };
-
-        //creating the residential object
-        protected Business(uint id, uint x, uint y, uint o, string sa, string c, string st, string z, bool fs, string name, BusinessType type, string yearEst, uint activeRecuritment) : base(id, x, y, o, sa, c, st, z, fs)
+        public Business(uint id, uint x, uint y, uint o, string sa, string c, string st, string z, string fs, 
+            string bName, BusinessType btype, string bYear, uint bActive)
+            : base(id, x, y, o, sa, c, st, z, fs)
         {
-            //readonly
-            _type = type;
-            _yearEst = yearEst;
-
-            //get/set
-            Name = name;
-            ActiveRecruitment = activeRecruitment;
+            Name = bName;
+            type = btype;
+            yearEstablished = bYear;
+            ActiveRecruitment = bActive;
         }
-
-        //all the GET/SET methods for The class.
         public string Name
         {
             get => name;
             set => name = value;
         }
+
+        public BusinessType Type => type;
+
+        public string YearEstablished => yearEstablished;
 
         public uint ActiveRecruitment
         {

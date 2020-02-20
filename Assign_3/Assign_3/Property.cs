@@ -18,8 +18,7 @@ namespace Assign_3
         private string city;
         private string state;
         private string zip;
-        private bool forSale;
-        private 
+        private string forSale;
 
         //Property Object
         protected Property()
@@ -33,11 +32,11 @@ namespace Assign_3
             city = "";
             state = "";
             zip = "";
-            forSale = false;
+            forSale = "";
         }
 
         //creating the Property Object
-        public Property(uint id, uint x, uint y, uint o, string sa, string c, string st, string z, bool fs )
+        public Property(uint id, uint x, uint y, uint o, string sa, string c, string st, string z, string fs)\
         {
             _id = id;
             _x = x;
@@ -82,7 +81,7 @@ namespace Assign_3
             set => zip = value;
         }
 
-        public bool ForSale
+        public string ForSale
         {
             get => forSale;
             set => forSale = value;
