@@ -97,13 +97,36 @@ namespace Assign_3
         // this displays the value of the min trace bar
         private void MinPriceTrackBar_Scroll(object sender, EventArgs e)
         {
-            MinPriceLabel.Text = "Min Price: " + MinPriceTrackBar.Value;
+            MinPriceLabel.Text = "Min Price: " + String.Format("{0:C0}", MinPriceTrackBar.Value);
+
+            //if track bar is less than this the disable and set value equal to it
+
+            if (MinPriceTrackBar.Value >= MaxPriceTrackBar.Value)
+            {
+                MaxPriceTrackBar.Enabled = false;
+                MaxPriceTrackBar.Value = MinPriceTrackBar.Value;
+                MaxPriceLabel.Text = "Max Price: " + String.Format("{0:C0}", MaxPriceTrackBar.Value);
+            }
+            else
+            {
+                MaxPriceTrackBar.Enabled = true;
+            }
         }
 
         // this displays the value of the max trace bar
         private void MaxPriceTrackBar_Scroll(object sender, EventArgs e)
         {
-            MaxPriceLabel.Text = "Max Price: " + MaxPriceTrackBar.Value;
+            MaxPriceLabel.Text = "Max Price: " + String.Format("{0:C0}", MaxPriceTrackBar.Value);
+            if (MaxPriceTrackBar.Value <= MinPriceTrackBar.Value)
+            {
+                MinPriceTrackBar.Enabled = false;
+                MinPriceTrackBar.Value = MaxPriceTrackBar.Value;
+                MinPriceLabel.Text = "Max Price: " + String.Format("{0:C0}", MaxPriceTrackBar.Value);
+            }
+            else
+            {
+                MinPriceTrackBar.Enabled = true;
+            }
         }
 
         private void ParametersQueryButton_Click(object sender, EventArgs e)
@@ -202,6 +225,18 @@ namespace Assign_3
                    ((Math.Pow(nearby.X, 2) + Math.Pow(nearby.Y, 2)) < Math.Pow(distance, 2)) && 
                    ((nearby is House) || (nearby is Apartment))
                    select nearby;
+        }
+
+        //Click of the first price button
+        private void PriceQueryButton_Click(object sender, EventArgs e)
+        {
+            QueryOutputTextbox.Text = string.Format("Properties for sale within [ {0}, {1} ] price range.\r\n" +
+                "------------------------------------------------------------------------------------------\r\n", String.Format("{0:C0}", MinPriceTrackBar.Value), String.Format("{0:C0}", MaxPriceTrackBar.Value));
+
+            //do all coomunitys that exist
+
+
+            QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
         }
     }
 }
