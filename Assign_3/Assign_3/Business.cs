@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assign_3
 {
+    public enum BusinessType { Grocery, Bank, Repair, FastFood, DepartmentStore }
     public class Business : Property
     {
         string name;

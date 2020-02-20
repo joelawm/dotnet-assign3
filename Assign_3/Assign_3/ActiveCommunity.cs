@@ -118,7 +118,7 @@ namespace Assign_3
                         var sqft = UInt32.Parse(iInput[11]);
                         var unit = iInput[12];
 
-                        Apartment apartment = new Apartment(id, x, y, oId, stAddr, city, state, zip, forSale, price, bedRoom, bath, sqft, unit);
+                        Apartment apartment = new Apartment(id, x, y, oId, stAddr, city, state, zip, forSale, bedRoom, bath, sqft, unit);
                         Community.Props.Add(apartment);
                         i++;
                     } while (i < input.Length); // do if i less than input array's length
