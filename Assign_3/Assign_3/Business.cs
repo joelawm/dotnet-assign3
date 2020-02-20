@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assign_3
 {
-    enum BusinessType { Grocery, Bank, Repair, FastFood, DepartmentStore };
-    class Business : Property
+    public class Business : Property
     {
         string name;
         readonly BusinessType type;
@@ -23,7 +22,6 @@ namespace Assign_3
             yearEstablished = bYear;
             ActiveRecruitment = bActive;
         }
-
         public string Name
         {
             get => name;

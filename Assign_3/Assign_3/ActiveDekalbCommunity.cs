@@ -1,13 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Assign_3
 {
-    public class ActiveDekalb
+    class ActiveDekalb
     {
         //input data for Deklab and Sycamore 
-        private const string DekalbPersonFile = "../../Dekalb/p.txt";
-        private const string DekalbHouseFile = "../../Dekalb/r.txt";
-        private const string DekalbApartmentFile = "../../Dekalb/a.txt";
-        private const string DekalbBusinessFile = "../../Dekalb/b.txt";
-        private const string DekalbSchoolFile = "../../Dekalb/s.txt";
+        private const string DekalbPersonFile = "../../Dekalb/p.txt"; //Person text file
+        private const string DekalbHouseFile = "../../Dekalb/r.txt"; //resident text file
+        private const string DekalbApartmentFile = "../../Dekalb/a.txt"; //apartments text file
+        private const string DekalbBusinessFile = "../../Dekalb/b.txt"; //buisness text file
+        private const string DekalbSchoolFile = "../../Dekalb/s.txt"; //School text file
 
         //set the comunity to active
         public Community ActiveDekalb_Files()

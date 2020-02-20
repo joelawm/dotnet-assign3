@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Assign_3
 {
-    //propaerty class
     public class Property : IComparable
     {
         //variables for class
@@ -37,7 +36,7 @@ namespace Assign_3
         }
 
         //creating the Property Object
-        public Property(uint id, uint x, uint y, uint o, string sa, string c, string st, string z, string fs)
+        public Property(uint id, uint x, uint y, uint o, string sa, string c, string st, string z, string fs)\
         {
             _id = id;
             _x = x;

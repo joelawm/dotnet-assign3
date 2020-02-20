@@ -28,7 +28,7 @@ namespace Assign_3
             get => name;
             set => name = value;
         }
-
+        
         public SchoolType Type => type;
         
         public string YearEstablished
