@@ -111,6 +111,7 @@
             // 
             // MaxPriceTrackBar
             // 
+            this.MaxPriceTrackBar.LargeChange = 1;
             this.MaxPriceTrackBar.Location = new System.Drawing.Point(202, 198);
             this.MaxPriceTrackBar.Margin = new System.Windows.Forms.Padding(6);
             this.MaxPriceTrackBar.Name = "MaxPriceTrackBar";
@@ -140,6 +141,7 @@
             // 
             // MinPriceTrackBar
             // 
+            this.MinPriceTrackBar.LargeChange = 1;
             this.MinPriceTrackBar.Location = new System.Drawing.Point(202, 87);
             this.MinPriceTrackBar.Margin = new System.Windows.Forms.Padding(6);
             this.MinPriceTrackBar.Name = "MinPriceTrackBar";
@@ -210,11 +212,12 @@
             this.SchoolQueryButton.TabIndex = 4;
             this.SchoolQueryButton.Text = "Query";
             this.SchoolQueryButton.UseVisualStyleBackColor = true;
+            this.SchoolQueryButton.Click += new System.EventHandler(this.SchoolQueryButton_Click);
             // 
             // SchoolDistanceUpDown
             // 
             this.SchoolDistanceUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SchoolDistanceUpDown.Location = new System.Drawing.Point(384, 88);
+            this.SchoolDistanceUpDown.Location = new System.Drawing.Point(391, 88);
             this.SchoolDistanceUpDown.Margin = new System.Windows.Forms.Padding(6);
             this.SchoolDistanceUpDown.Name = "SchoolDistanceUpDown";
             this.SchoolDistanceUpDown.Size = new System.Drawing.Size(270, 41);
@@ -224,7 +227,7 @@
             // 
             this.SchoolDistanceLabel.AutoSize = true;
             this.SchoolDistanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SchoolDistanceLabel.Location = new System.Drawing.Point(378, 46);
+            this.SchoolDistanceLabel.Location = new System.Drawing.Point(385, 46);
             this.SchoolDistanceLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.SchoolDistanceLabel.Name = "SchoolDistanceLabel";
             this.SchoolDistanceLabel.Size = new System.Drawing.Size(130, 36);
@@ -244,12 +247,14 @@
             // 
             // SchoolCombobox
             // 
+            this.SchoolCombobox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SchoolCombobox.FormattingEnabled = true;
             this.SchoolCombobox.Location = new System.Drawing.Point(12, 87);
             this.SchoolCombobox.Margin = new System.Windows.Forms.Padding(6);
             this.SchoolCombobox.Name = "SchoolCombobox";
-            this.SchoolCombobox.Size = new System.Drawing.Size(328, 44);
+            this.SchoolCombobox.Size = new System.Drawing.Size(360, 33);
             this.SchoolCombobox.TabIndex = 0;
+            this.SchoolCombobox.DropDown += new System.EventHandler(this.SchoolCombobox_DropDown);
             // 
             // ParametersGroupBox
             // 
@@ -457,7 +462,7 @@
             // BusinessDistanceUpDown
             // 
             this.BusinessDistanceUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BusinessDistanceUpDown.Location = new System.Drawing.Point(384, 88);
+            this.BusinessDistanceUpDown.Location = new System.Drawing.Point(391, 88);
             this.BusinessDistanceUpDown.Margin = new System.Windows.Forms.Padding(6);
             this.BusinessDistanceUpDown.Name = "BusinessDistanceUpDown";
             this.BusinessDistanceUpDown.Size = new System.Drawing.Size(270, 41);
@@ -467,7 +472,7 @@
             // 
             this.BusinessDistacnceLabel.AutoSize = true;
             this.BusinessDistacnceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BusinessDistacnceLabel.Location = new System.Drawing.Point(378, 46);
+            this.BusinessDistacnceLabel.Location = new System.Drawing.Point(385, 46);
             this.BusinessDistacnceLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.BusinessDistacnceLabel.Name = "BusinessDistacnceLabel";
             this.BusinessDistacnceLabel.Size = new System.Drawing.Size(130, 36);
@@ -487,12 +492,13 @@
             // 
             // ForSaleCombobox
             // 
+            this.ForSaleCombobox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForSaleCombobox.FormattingEnabled = true;
             this.ForSaleCombobox.Location = new System.Drawing.Point(12, 87);
             this.ForSaleCombobox.Margin = new System.Windows.Forms.Padding(6);
             this.ForSaleCombobox.MaxDropDownItems = 10;
             this.ForSaleCombobox.Name = "ForSaleCombobox";
-            this.ForSaleCombobox.Size = new System.Drawing.Size(328, 44);
+            this.ForSaleCombobox.Size = new System.Drawing.Size(360, 33);
             this.ForSaleCombobox.TabIndex = 0;
             this.ForSaleCombobox.DropDown += new System.EventHandler(this.ForSaleCombobox_DropDown);
             // 

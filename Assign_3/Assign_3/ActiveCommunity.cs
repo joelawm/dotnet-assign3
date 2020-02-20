@@ -5,7 +5,12 @@ namespace Assign_3
 {
     class ActiveCommunity
     {
-        public Community Active_Files(string personFile, string houseFile, string apartmentFile, string commName)
+        public Community Active_Files(string personFile, 
+                                      string houseFile, 
+                                      string apartmentFile, 
+                                      string businessFile, 
+                                      string schoolFile, 
+                                      string commName)
         {
             //Dekalb and Sycamore Community
             Community Community = new Community(99999, commName, 0);
@@ -64,7 +69,7 @@ namespace Assign_3
                         var city = iInput[5];
                         var state = iInput[6];
                         var zip = iInput[7];
-                        var forSale = iInput[8].Equals("T");
+                        var forSale = iInput[8];
                         var bedRoom = UInt32.Parse(iInput[9]);
                         var bath = UInt32.Parse(iInput[10]);
                         var sqft = UInt32.Parse(iInput[11]);
@@ -103,7 +108,7 @@ namespace Assign_3
                         var city = iInput[5];
                         var state = iInput[6];
                         var zip = iInput[7];
-                        var forSale = iInput[8].Equals("T");
+                        var forSale = iInput[8];
                         var bedRoom = UInt32.Parse(iInput[9]);
                         var bath = UInt32.Parse(iInput[10]);
                         var sqft = UInt32.Parse(iInput[11]);
@@ -112,6 +117,89 @@ namespace Assign_3
                         Apartment apartment = new Apartment(id, x, y, oId, stAddr, city, state, zip, forSale, bedRoom,
                             bath, sqft, unit);
                         Community.Props.Add(apartment);
+                        i++;
+                    } while (i < input.Length); // do if i less than input array's length
+
+                    sr.Close();
+                }
+            }
+            
+            // if business file exists
+            if (File.Exists(businessFile))
+            {
+                using (StreamReader sr = File.OpenText(businessFile))
+                {
+                    // split data by '\n' and save them in input array
+                    string[] input = sr.ReadToEnd().Split('\n');
+                    int i = 0;
+
+                    do
+                    {
+                        // split data by '\t' and save them in input array
+                        string[] iInput = input[i].Split('\t');
+                        var id = UInt32.Parse(iInput[0]);
+                        var oId = UInt32.Parse(iInput[1]);
+                        var x = UInt32.Parse(iInput[2]);
+                        var y = UInt32.Parse(iInput[3]);
+                        var stAddr = iInput[4];
+                        var city = iInput[5];
+                        var state = iInput[6];
+                        var zip = iInput[7];
+                        var forSale = iInput[8];
+                        var companyName = iInput[9];
+                        var bType = UInt32.Parse(iInput[10]);
+                        var yearBuild = iInput[11];
+                        var crew = UInt32.Parse(iInput[12]);
+
+                        Business business = new Business(id, x, y, oId, stAddr, city, state, zip, forSale, 
+                                                        companyName, (BusinessType)bType, yearBuild, crew);
+                        Community.Props.Add(business);
+                        i++;
+                    } while (i < input.Length); // do if i less than input array's length
+
+                    sr.Close();
+                }
+            }
+
+            // if School file exists
+            if (File.Exists(schoolFile))
+            {
+                using (StreamReader sr = File.OpenText(schoolFile))
+                {
+                    // split data by '\n' and save them in input array
+                    string[] input = sr.ReadToEnd().Split('\n');
+                    int i = 0;
+
+                    do
+                    {
+                        // split data by '\t' and save them in input array
+                        string[] iInput = input[i].Split('\t');
+                        var id = UInt32.Parse(iInput[0]);
+                        var oId = UInt32.Parse(iInput[1]);
+                        var x = UInt32.Parse(iInput[2]);
+                        var y = UInt32.Parse(iInput[3]);
+                        var stAddr = iInput[4];
+                        var city = iInput[5];
+                        var state = iInput[6];
+                        var zip = iInput[7];
+                        var forSale = iInput[8];
+                        var schoolName = iInput[9];
+                        string[] sNameList = iInput[9].Split(' ');
+                        var sType = 4;
+                        if (sNameList[sNameList.Length - 1] == "School")
+                            if (sNameList[sNameList.Length - 2] == "Hign")
+                                sType = 2;
+                            else
+                                sType = 1;
+                        else if (sNameList[sNameList.Length - 1] == "College")
+                            sType = 3;
+
+                        var yearBuild = iInput[10];
+                        var enroll = UInt32.Parse(iInput[11]);
+
+                        School school = new School(id, x, y, oId, stAddr, city, state, zip, forSale,
+                                                        schoolName, (SchoolType)sType, yearBuild, enroll);
+                        Community.Props.Add(school);
                         i++;
                     } while (i < input.Length); // do if i less than input array's length
 

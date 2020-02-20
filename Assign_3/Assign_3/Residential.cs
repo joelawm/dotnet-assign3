@@ -16,7 +16,7 @@ namespace Assign_3
 
         //creating the residential object
         protected Residential(uint id, uint x, uint y, uint o,
-            string sa, string c, string st, string z, bool fs, uint bedroom, uint bath, uint sq)
+            string sa, string c, string st, string z, string fs, uint bedroom, uint bath, uint sq)
             : base(id, x, y, o, sa, c, st, z, fs)
         {
             Bedrooms = bedroom;
@@ -56,7 +56,7 @@ namespace Assign_3
 
         //creating the residential house object
         public House(uint id, uint x, uint y, uint o, string sa, string c,
-            string st, string z, bool fs, uint bedroom, uint bath, uint sq,
+            string st, string z, string fs, uint bedroom, uint bath, uint sq,
             bool gar, bool aGar, uint fl)
             : base(id, x, y, o, sa, c, st, z, fs, bedroom, bath, sq)
         {
@@ -94,7 +94,7 @@ namespace Assign_3
 
         //Apartment creating object
         public Apartment(uint id, uint x, uint y, uint o, string sa, string c,
-            string st, string z, bool fs, uint bedroom, uint bath, uint sq, string u)
+            string st, string z, string fs, uint bedroom, uint bath, uint sq, string u)
             : base(id, x, y, o, sa, c, st, z, fs, bedroom, bath, sq)
         {
             Unit = u;

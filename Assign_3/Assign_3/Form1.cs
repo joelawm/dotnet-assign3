@@ -33,6 +33,7 @@ namespace Assign_3
         // Cleck forsale dropdown and show all the properties
         private void ForSaleCombobox_DropDown(object sender, EventArgs e)
         {
+            ForSaleCombobox.Items.Clear();
             string[] propertyList = FindProperties(DekalbCommunity);
             ForSaleCombobox.Items.Add("Dekalb:");
             ForSaleCombobox.Items.Add("----------");
@@ -56,22 +57,24 @@ namespace Assign_3
 
         private string[] FindProperties(Community comm)
         {
-            string[] propertyList = new string[20];
+            string[] propertyList = new string[30];
             ushort index = 0;
 
-            foreach (var property in comm.Props)
-            {
-                if (property is House)
-                    propertyList[index++] = property.StreetAddr;
-            }
+            var houseProperty = from property in comm.Props
+                                where (property is House)
+                                select property;
+
+            foreach (var property in houseProperty)
+                propertyList[index++] = property.StreetAddr;
 
             propertyList[index++] = "";
 
-            foreach (var property in comm.Props)
-            {
-                if (property is Apartment)
-                    propertyList[index++] = property.StreetAddr + " # " + ((Apartment)property).Unit;
-            }
+            var apartmentProperty = from property in comm.Props
+                                    where (property is Apartment)
+                                    select property;
+
+            foreach (var property in apartmentProperty)
+                propertyList[index++] = property.StreetAddr + " # " + ((Apartment)property).Unit;
 
             return propertyList;
         }
@@ -79,23 +82,18 @@ namespace Assign_3
         // action after clicking the 3th query button
         private void BusinessQueryButton_Click(object sender, EventArgs e)
         {
-            if (ForSaleCombobox.SelectedItem != null)
-            {
-                string[] stAddr = ForSaleCombobox.SelectedItem.ToString().Split(new[] { " # " }, StringSplitOptions.None);
-                ushort distance = Convert.ToUInt16(BusinessDistanceUpDown.Value);
+            if (ForSaleCombobox.SelectedItem == null)
+                return;
 
-                QueryOutputTextbox.Text = string.Format("Hiring Businesses within {0} unit of distance\r\n\tfrom {1}\r\n" +
-                    "------------------------------------------------------------------------------------------\r\n", distance, stAddr);
+            string[] stAddr = ForSaleCombobox.SelectedItem.ToString().Split(new[] { " # " }, StringSplitOptions.None);
+            ushort distance = Convert.ToUInt16(BusinessDistanceUpDown.Value);
+
+            QueryOutputTextbox.Text = string.Format("Hiring Businesses within {0} unit of distance\r\n\tfrom {1}\r\n" +
+                                                    "------------------------------------------------------------------------------------------\r\n", distance, stAddr);
 
 
-            }
         }
 
-        private string[] FindBussinessPropertyInfo(Community comm)
-        {
-            return null;
-        }
-        
         // this displays the value of the min trace bar
         private void MinPriceTrackBar_Scroll(object sender, EventArgs e)
         {
@@ -104,7 +102,7 @@ namespace Assign_3
 
         // this displays the value of the max trace bar
         private void MaxPriceTrackBar_Scroll(object sender, EventArgs e)
-        { 
+        {
             MaxPriceLabel.Text = "Max Price: " + MaxPriceTrackBar.Value;
         }
 
@@ -122,6 +120,88 @@ namespace Assign_3
             if (HouseCheckBox.Checked)
             {
             }
+        }
+
+        private void SchoolCombobox_DropDown(object sender, EventArgs e)
+        {
+            SchoolCombobox.Items.Clear();
+            string[] propertyList = FindSchool(DekalbCommunity);
+            SchoolCombobox.Items.Add("Dekalb:");
+            SchoolCombobox.Items.Add("----------");
+            foreach (var stAddr in propertyList)
+            {
+                if (stAddr != null)
+                    SchoolCombobox.Items.Add(stAddr);
+            }
+
+            SchoolCombobox.Items.Add("");
+
+            propertyList = FindSchool(SycamoreCommunity);
+            SchoolCombobox.Items.Add("Sycamore:");
+            SchoolCombobox.Items.Add("----------");
+            foreach (var stAddr in propertyList)
+            {
+                if (stAddr != null)
+                    SchoolCombobox.Items.Add(stAddr);
+            }
+        }
+
+        private string[] FindSchool(Community comm)
+        {
+            string[] schoolList = new string[10];
+            ushort index = 0;
+
+            var schoolProperty = from property in comm.Props
+                                 where (property is School)
+                                 select property;
+
+            foreach (var property in schoolProperty)
+                schoolList[index++] = ((School)property).Name;
+
+            return schoolList;
+        }
+
+        private void SchoolQueryButton_Click(object sender, EventArgs e)
+        {
+            if (SchoolCombobox.SelectedItem == null)
+                return;
+
+            string schoolName = SchoolCombobox.Text.ToString();
+            int distance = Convert.ToInt32(SchoolDistanceUpDown.Value);
+
+            QueryOutputTextbox.Text = string.Format("Residences for sale within {1} units of distance\r\n\tfrom {0}\r\n" +
+                "------------------------------------------------------------------------------------------\r\n", schoolName, distance);
+
+            
+
+            foreach (var pro in FindNearbyForSale(DekalbCommunity, distance))
+            {
+                var nameInfo = from person in DekalbCommunity.Residents
+                               where pro.OwnerId == person.Id
+                               select person;
+
+                foreach (var person in nameInfo)
+                    QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}   {4} units away\r\n" +
+                         "Owner: {5} | {6} bed, {7} bath, {8} sq.ft \r\n {9} : {10} floors.   ${11}\r\n\r\n",
+                         pro.StreetAddr, "Dekalb", pro.State, pro.Zip, (int)Math.Sqrt(Math.Pow(pro.X, 2) + Math.Pow(pro.Y, 2)),
+                         person.FullName, ((Residential)pro).Bedrooms, ((Residential)pro).Baths, ((Residential)pro).Sqft,
+                         ((pro is Apartment)?
+                            "With out garage":(((House)pro).Garage?
+                            (((House)pro).AttatchedGarage != true?"With attached garage":"With garage"):"With out garage")),
+                         (pro is House)?((House)pro).Flood:0, pro.ForSale.Split(':')[1]
+                         ));
+            }
+            QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
+
+        }
+
+        private IEnumerable<Property> FindNearbyForSale(Community comm, int distance)
+        {
+            return from nearby in comm.Props
+                   where (nearby.ForSale.Split(':')[0] == "T") &&
+                   ((Math.Pow(nearby.X, 2) + Math.Pow(nearby.Y, 2)) < Math.Pow(distance, 2)) && 
+                   ((nearby is House) || (nearby is Apartment))
+                   select nearby;
         }
     }
 }
