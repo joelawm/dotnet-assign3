@@ -35,7 +35,7 @@
             this.MinPriceLabel = new System.Windows.Forms.Label();
             this.MinPriceTrackBar = new System.Windows.Forms.TrackBar();
             this.SchoolCheckBox = new System.Windows.Forms.CheckBox();
-            this.BuisnessCheckBox = new System.Windows.Forms.CheckBox();
+            this.BusinessCheckBox = new System.Windows.Forms.CheckBox();
             this.ResidentialtCheckBox = new System.Windows.Forms.CheckBox();
             this.SchoolRangeGroupBox = new System.Windows.Forms.GroupBox();
             this.SchoolQueryButton = new System.Windows.Forms.Button();
@@ -86,7 +86,7 @@
             this.PriceRangeGroupBox.Controls.Add(this.MinPriceLabel);
             this.PriceRangeGroupBox.Controls.Add(this.MinPriceTrackBar);
             this.PriceRangeGroupBox.Controls.Add(this.SchoolCheckBox);
-            this.PriceRangeGroupBox.Controls.Add(this.BuisnessCheckBox);
+            this.PriceRangeGroupBox.Controls.Add(this.BusinessCheckBox);
             this.PriceRangeGroupBox.Controls.Add(this.ResidentialtCheckBox);
             this.PriceRangeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PriceRangeGroupBox.Location = new System.Drawing.Point(12, 12);
@@ -156,16 +156,16 @@
             this.SchoolCheckBox.Text = "School";
             this.SchoolCheckBox.UseVisualStyleBackColor = true;
             // 
-            // BuisnessCheckBox
+            // BusinessCheckBox
             // 
-            this.BuisnessCheckBox.AutoSize = true;
-            this.BuisnessCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BuisnessCheckBox.Location = new System.Drawing.Point(7, 53);
-            this.BuisnessCheckBox.Name = "BuisnessCheckBox";
-            this.BuisnessCheckBox.Size = new System.Drawing.Size(88, 22);
-            this.BuisnessCheckBox.TabIndex = 1;
-            this.BuisnessCheckBox.Text = "Buisness";
-            this.BuisnessCheckBox.UseVisualStyleBackColor = true;
+            this.BusinessCheckBox.AutoSize = true;
+            this.BusinessCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BusinessCheckBox.Location = new System.Drawing.Point(7, 53);
+            this.BusinessCheckBox.Name = "BusinessCheckBox";
+            this.BusinessCheckBox.Size = new System.Drawing.Size(88, 22);
+            this.BusinessCheckBox.TabIndex = 1;
+            this.BusinessCheckBox.Text = "Buisness";
+            this.BusinessCheckBox.UseVisualStyleBackColor = true;
             // 
             // ResidentialtCheckBox
             // 
@@ -436,6 +436,7 @@
             this.QueryOutputTextbox.Location = new System.Drawing.Point(509, 30);
             this.QueryOutputTextbox.Multiline = true;
             this.QueryOutputTextbox.Name = "QueryOutputTextbox";
+            this.QueryOutputTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.QueryOutputTextbox.Size = new System.Drawing.Size(526, 488);
             this.QueryOutputTextbox.TabIndex = 4;
             // 
@@ -563,7 +564,7 @@
         private System.Windows.Forms.Label MinPriceLabel;
         private System.Windows.Forms.TrackBar MinPriceTrackBar;
         private System.Windows.Forms.CheckBox SchoolCheckBox;
-        private System.Windows.Forms.CheckBox BuisnessCheckBox;
+        private System.Windows.Forms.CheckBox BusinessCheckBox;
         private System.Windows.Forms.CheckBox ResidentialtCheckBox;
         private System.Windows.Forms.Button SchoolQueryButton;
         private System.Windows.Forms.NumericUpDown SchoolDistanceUpDown;

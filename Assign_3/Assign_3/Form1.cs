@@ -91,7 +91,7 @@ namespace Assign_3
             QueryOutputTextbox.Text = string.Format("Hiring Businesses within {0} unit of distance\r\n\tfrom {1}\r\n" +
                                                     "------------------------------------------------------------------------------------------\r\n", distance, stAddr);
 
-
+            QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
         }
 
         // this displays the value of the min trace bar
@@ -227,16 +227,80 @@ namespace Assign_3
                    select nearby;
         }
 
-        //Click of the first price button
+        //Click of the first price button Displaying price info on different properties.
         private void PriceQueryButton_Click(object sender, EventArgs e)
         {
             QueryOutputTextbox.Text = string.Format("Properties for sale within [ {0}, {1} ] price range.\r\n" +
                 "------------------------------------------------------------------------------------------\r\n", String.Format("{0:C0}", MinPriceTrackBar.Value), String.Format("{0:C0}", MaxPriceTrackBar.Value));
 
-            //do all coomunitys that exist
+            //dekalb community
+            QueryOutputTextbox.AppendText("\t#### DeKalb #### \r\n\r\n");
+            foreach(var pro in FindForSaleInCost(DekalbCommunity, MinPriceTrackBar.Value, MaxPriceTrackBar.Value))
+            {
+                var nameInfo = from person in DekalbCommunity.Residents
+                               where pro.OwnerId == person.Id
+                               select person;
 
+                foreach(var person in nameInfo)
+                {
+                    var houses = from props in DekalbCommunity.Props
+                                 group props by (props is House) into housegroup
+                                 select housegroup;
+
+                    foreach (var housegroup in houses)
+                    {
+                        QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}\r\n" +
+                                 "Owner: {4} | {5} bed, {6} bath, {7} sq.ft \r\n {8} : {9} floors.   ${10}\r\n\r\n",
+                                 pro.StreetAddr, "Dekalb", pro.State, pro.Zip, person.FullName, ((Residential)pro).Bedrooms, ((Residential)pro).Baths, ((Residential)pro).Sqft,
+                                 ((pro is Apartment) ?
+                                    "With out garage" : (((House)pro).Garage ?
+                                    (((House)pro).AttatchedGarage != true ? "With attached garage" : "With garage") : "With out garage")),
+                                 (pro is House) ? ((House)pro).Flood : 0, pro.ForSale.Split(':')[1]
+                                 ));
+                    }
+                }
+
+
+                /*
+                if(ResidentialtCheckBox.Checked == true)
+                {
+                    var nameInfo = from person in DekalbCommunity.Residents
+                                   where pro.OwnerId == person.Id
+                                   select person;
+
+                    foreach (var person in nameInfo)
+                        QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}\r\n" +
+                             "Owner: {4} | {5} bed, {6} bath, {7} sq.ft \r\n {8} : {9} floors.   ${10}\r\n\r\n",
+                             pro.StreetAddr, "Dekalb", pro.State, pro.Zip, person.FullName, ((Residential)pro).Bedrooms, ((Residential)pro).Baths, ((Residential)pro).Sqft,
+                             ((pro is Apartment) ?
+                                "With out garage" : (((House)pro).Garage ?
+                                (((House)pro).AttatchedGarage != true ? "With attached garage" : "With garage") : "With out garage")),
+                             (pro is House) ? ((House)pro).Flood : 0, pro.ForSale.Split(':')[1]
+                             ));
+                }
+                else if (BusinessCheckBox.Checked == true)
+                {
+
+                }
+                else if(SchoolCheckBox.Checked == true)
+                {
+
+                }
+                */
+            }
+
+            //syacmore community
+            QueryOutputTextbox.AppendText("\t#### Sycamore #### \r\n\r\n");
 
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
+        }
+
+        private IEnumerable<Property> FindForSaleInCost(Community comm, int min, int max)
+        {
+            return from nearby in comm.Props
+                   where (nearby.ForSale.Split(':')[0] == "T") && (Convert.ToInt32(nearby.ForSale.Split(':')[1]) >= min) && (Convert.ToInt32(nearby.ForSale.Split(':')[1]) <= max) &&
+                   ((nearby is House) || (nearby is Apartment) || (nearby is School) || (nearby is Business))
+                   select nearby;
         }
     }
 }
