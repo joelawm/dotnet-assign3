@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Assign_3
@@ -89,10 +85,35 @@ namespace Assign_3
             ushort distance = Convert.ToUInt16(BusinessDistanceUpDown.Value);
 
             QueryOutputTextbox.Text = string.Format("Hiring Businesses within {0} unit of distance\r\n\tfrom {1}\r\n" +
-                                                    "------------------------------------------------------------------------------------------\r\n", distance, stAddr);
+                                                    "------------------------------------------------------------------------------------------\r\n", distance, stAddr[0]);
+
+            //var property = from n in 
+
+            if (ForSaleCombobox.SelectedIndex > (DekalbCommunity.Population + 5))
+                PrintNearbyBusiness(SycamoreCommunity, stAddr, distance);
+            else
+                PrintNearbyBusiness(DekalbCommunity, stAddr, distance);
 
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
         }
+
+        private void PrintNearbyBusiness(Community comm, string[] stAddr, ushort distance)
+        {
+            var property = from n in comm.Props
+                           where (n.StreetAddr == stAddr[0])
+                           select n;
+
+            var business = from n1 in property
+                           from n in comm.Props
+                           where (n is Business) && (Math.Pow(n1.X - n.X, 2) + Math.Pow(n1.Y - n.Y, 2) <= Math.Pow(distance, 2))
+                           select n;
+
+            foreach (var pro in business)
+                MessageBox.Show(pro.StreetAddr);
+                    //QueryOutputTextbox.AppendText(string.Format("{0}{1}{2}{3}{4}",
+                        //bus.StreetAddr, bus.City, bus.State, bus.Zip, distance));
+        }
+
 
         // this displays the value of the min trace bar
         private void MinPriceTrackBar_Scroll(object sender, EventArgs e)
@@ -195,18 +216,36 @@ namespace Assign_3
             QueryOutputTextbox.Text = string.Format("Residences for sale within {1} units of distance\r\n\tfrom {0}\r\n" +
                 "------------------------------------------------------------------------------------------\r\n", schoolName, distance);
 
-            
+            int index = 0;
+            foreach (var v in SchoolCombobox.Items)
+                if (v.ToString() != "")
+                    index++;
+                else
+                    break;
 
-            foreach (var pro in FindNearbyForSale(DekalbCommunity, distance))
+            Community comm;
+            if (SchoolCombobox.SelectedIndex < index)
+                comm = DekalbCommunity;
+            else
+                comm = SycamoreCommunity;
+
+            foreach (var pro in FindNearbyForSale(comm, schoolName, distance))
             {
-                var nameInfo = from person in DekalbCommunity.Residents
+                var school = from n in comm.Props
+                             where (n is School) && ((n as School).Name == schoolName)
+                             select n;
+
+                foreach (var s in school)
+                    QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}   {4} units away\r\n",
+                            pro.StreetAddr, pro.City, pro.State, pro.Zip, Math.Sqrt((Math.Pow(s.X - pro.X, 2) + Math.Pow(s.Y - pro.Y, 2)))
+                            ));
+
+                var nameInfo = from person in comm.Residents
                                where pro.OwnerId == person.Id
                                select person;
 
                 foreach (var person in nameInfo)
-                    QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}   {4} units away\r\n" +
-                         "Owner: {5} | {6} bed, {7} bath, {8} sq.ft \r\n {9} : {10} floors.   ${11}\r\n\r\n",
-                         pro.StreetAddr, "Dekalb", pro.State, pro.Zip, (int)Math.Sqrt(Math.Pow(pro.X, 2) + Math.Pow(pro.Y, 2)),
+                    QueryOutputTextbox.AppendText(string.Format("Owner: {0} | {1} bed, {2} bath, {3} sq.ft \r\n {4} : {5} floors.   ${6}\r\n\r\n",
                          person.FullName, ((Residential)pro).Bedrooms, ((Residential)pro).Baths, ((Residential)pro).Sqft,
                          ((pro is Apartment)?
                             "With out garage":(((House)pro).Garage?
@@ -214,17 +253,19 @@ namespace Assign_3
                          (pro is House)?((House)pro).Flood:0, pro.ForSale.Split(':')[1]
                          ));
             }
+
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
 
         }
 
-        private IEnumerable<Property> FindNearbyForSale(Community comm, int distance)
+        private IEnumerable<Property> FindNearbyForSale(Community comm, string schoolName, int distance)
         {
-            return from nearby in comm.Props
-                   where (nearby.ForSale.Split(':')[0] == "T") &&
-                   ((Math.Pow(nearby.X, 2) + Math.Pow(nearby.Y, 2)) < Math.Pow(distance, 2)) && 
-                   ((nearby is House) || (nearby is Apartment))
-                   select nearby;
+            return  from school in comm.Props
+                    from pro in comm.Props
+                    where (school is School) && ((school as School).Name == schoolName)
+                    where (pro.ForSale.Split(':')[0] == "T") && ((Math.Pow(school.X - pro.X, 2) + Math.Pow(school.X - pro.X, 2)) < Math.Pow(distance, 2))
+                    where (pro is Apartment) || (pro is House)
+                    select pro;
         }
 
         //Click of the first price button Displaying price info on different properties.
@@ -302,5 +343,6 @@ namespace Assign_3
                    ((nearby is House) || (nearby is Apartment) || (nearby is School) || (nearby is Business))
                    select nearby;
         }
+
     }
 }
