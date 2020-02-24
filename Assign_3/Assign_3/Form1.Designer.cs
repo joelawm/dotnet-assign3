@@ -64,6 +64,7 @@
             this.BusinessDistacnceLabel = new System.Windows.Forms.Label();
             this.ForSaleLabel = new System.Windows.Forms.Label();
             this.ForSaleCombobox = new System.Windows.Forms.ComboBox();
+            this.DetachedGarageCheckBox = new System.Windows.Forms.CheckBox();
             this.PriceRangeGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaxPriceTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MinPriceTrackBar)).BeginInit();
@@ -89,11 +90,9 @@
             this.PriceRangeGroupBox.Controls.Add(this.BusinessCheckBox);
             this.PriceRangeGroupBox.Controls.Add(this.ResidentialtCheckBox);
             this.PriceRangeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PriceRangeGroupBox.Location = new System.Drawing.Point(24, 23);
-            this.PriceRangeGroupBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PriceRangeGroupBox.Location = new System.Drawing.Point(12, 12);
             this.PriceRangeGroupBox.Name = "PriceRangeGroupBox";
-            this.PriceRangeGroupBox.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.PriceRangeGroupBox.Size = new System.Drawing.Size(976, 294);
+            this.PriceRangeGroupBox.Size = new System.Drawing.Size(488, 153);
             this.PriceRangeGroupBox.TabIndex = 0;
             this.PriceRangeGroupBox.TabStop = false;
             this.PriceRangeGroupBox.Text = "For Sale Properties Within Price Range";
@@ -101,10 +100,9 @@
             // PriceQueryButton
             // 
             this.PriceQueryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PriceQueryButton.Location = new System.Drawing.Point(692, 46);
-            this.PriceQueryButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PriceQueryButton.Location = new System.Drawing.Point(346, 24);
             this.PriceQueryButton.Name = "PriceQueryButton";
-            this.PriceQueryButton.Size = new System.Drawing.Size(150, 44);
+            this.PriceQueryButton.Size = new System.Drawing.Size(75, 23);
             this.PriceQueryButton.TabIndex = 7;
             this.PriceQueryButton.Text = "Query";
             this.PriceQueryButton.UseVisualStyleBackColor = true;
@@ -113,42 +111,38 @@
             // MaxPriceTrackBar
             // 
             this.MaxPriceTrackBar.LargeChange = 1;
-            this.MaxPriceTrackBar.Location = new System.Drawing.Point(202, 198);
-            this.MaxPriceTrackBar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.MaxPriceTrackBar.Location = new System.Drawing.Point(101, 103);
             this.MaxPriceTrackBar.Maximum = 350000;
             this.MaxPriceTrackBar.Name = "MaxPriceTrackBar";
-            this.MaxPriceTrackBar.Size = new System.Drawing.Size(308, 90);
+            this.MaxPriceTrackBar.Size = new System.Drawing.Size(154, 45);
             this.MaxPriceTrackBar.TabIndex = 6;
             this.MaxPriceTrackBar.Scroll += new System.EventHandler(this.MaxPriceTrackBar_Scroll);
             // 
             // MaxPriceLabel
             // 
             this.MaxPriceLabel.AutoSize = true;
-            this.MaxPriceLabel.Location = new System.Drawing.Point(214, 162);
-            this.MaxPriceLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.MaxPriceLabel.Location = new System.Drawing.Point(107, 84);
             this.MaxPriceLabel.Name = "MaxPriceLabel";
-            this.MaxPriceLabel.Size = new System.Drawing.Size(165, 36);
+            this.MaxPriceLabel.Size = new System.Drawing.Size(88, 18);
             this.MaxPriceLabel.TabIndex = 5;
             this.MaxPriceLabel.Text = "Max Price:";
             // 
             // MinPriceLabel
             // 
             this.MinPriceLabel.AutoSize = true;
-            this.MinPriceLabel.Location = new System.Drawing.Point(214, 48);
-            this.MinPriceLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.MinPriceLabel.Location = new System.Drawing.Point(107, 25);
             this.MinPriceLabel.Name = "MinPriceLabel";
-            this.MinPriceLabel.Size = new System.Drawing.Size(158, 36);
+            this.MinPriceLabel.Size = new System.Drawing.Size(84, 18);
             this.MinPriceLabel.TabIndex = 4;
             this.MinPriceLabel.Text = "Min Price:";
             // 
             // MinPriceTrackBar
             // 
             this.MinPriceTrackBar.LargeChange = 1;
-            this.MinPriceTrackBar.Location = new System.Drawing.Point(202, 87);
-            this.MinPriceTrackBar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.MinPriceTrackBar.Location = new System.Drawing.Point(101, 45);
             this.MinPriceTrackBar.Maximum = 350000;
             this.MinPriceTrackBar.Name = "MinPriceTrackBar";
-            this.MinPriceTrackBar.Size = new System.Drawing.Size(312, 90);
+            this.MinPriceTrackBar.Size = new System.Drawing.Size(156, 45);
             this.MinPriceTrackBar.TabIndex = 3;
             this.MinPriceTrackBar.Scroll += new System.EventHandler(this.MinPriceTrackBar_Scroll);
             // 
@@ -156,10 +150,9 @@
             // 
             this.SchoolCheckBox.AutoSize = true;
             this.SchoolCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SchoolCheckBox.Location = new System.Drawing.Point(14, 158);
-            this.SchoolCheckBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolCheckBox.Location = new System.Drawing.Point(7, 82);
             this.SchoolCheckBox.Name = "SchoolCheckBox";
-            this.SchoolCheckBox.Size = new System.Drawing.Size(140, 40);
+            this.SchoolCheckBox.Size = new System.Drawing.Size(74, 22);
             this.SchoolCheckBox.TabIndex = 2;
             this.SchoolCheckBox.Text = "School";
             this.SchoolCheckBox.UseVisualStyleBackColor = true;
@@ -168,10 +161,9 @@
             // 
             this.BusinessCheckBox.AutoSize = true;
             this.BusinessCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BusinessCheckBox.Location = new System.Drawing.Point(14, 102);
-            this.BusinessCheckBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BusinessCheckBox.Location = new System.Drawing.Point(7, 53);
             this.BusinessCheckBox.Name = "BusinessCheckBox";
-            this.BusinessCheckBox.Size = new System.Drawing.Size(169, 40);
+            this.BusinessCheckBox.Size = new System.Drawing.Size(88, 22);
             this.BusinessCheckBox.TabIndex = 1;
             this.BusinessCheckBox.Text = "Buisness";
             this.BusinessCheckBox.UseVisualStyleBackColor = true;
@@ -180,10 +172,9 @@
             // 
             this.ResidentialtCheckBox.AutoSize = true;
             this.ResidentialtCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResidentialtCheckBox.Location = new System.Drawing.Point(14, 46);
-            this.ResidentialtCheckBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ResidentialtCheckBox.Location = new System.Drawing.Point(7, 24);
             this.ResidentialtCheckBox.Name = "ResidentialtCheckBox";
-            this.ResidentialtCheckBox.Size = new System.Drawing.Size(188, 40);
+            this.ResidentialtCheckBox.Size = new System.Drawing.Size(96, 22);
             this.ResidentialtCheckBox.TabIndex = 0;
             this.ResidentialtCheckBox.Text = "Residental";
             this.ResidentialtCheckBox.UseVisualStyleBackColor = true;
@@ -196,11 +187,9 @@
             this.SchoolRangeGroupBox.Controls.Add(this.SchoolLabel);
             this.SchoolRangeGroupBox.Controls.Add(this.SchoolCombobox);
             this.SchoolRangeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SchoolRangeGroupBox.Location = new System.Drawing.Point(24, 329);
-            this.SchoolRangeGroupBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolRangeGroupBox.Location = new System.Drawing.Point(12, 171);
             this.SchoolRangeGroupBox.Name = "SchoolRangeGroupBox";
-            this.SchoolRangeGroupBox.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.SchoolRangeGroupBox.Size = new System.Drawing.Size(978, 169);
+            this.SchoolRangeGroupBox.Size = new System.Drawing.Size(489, 88);
             this.SchoolRangeGroupBox.TabIndex = 1;
             this.SchoolRangeGroupBox.TabStop = false;
             this.SchoolRangeGroupBox.Text = "For Sale Residences Within Range of a School";
@@ -208,10 +197,9 @@
             // SchoolQueryButton
             // 
             this.SchoolQueryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SchoolQueryButton.Location = new System.Drawing.Point(692, 87);
-            this.SchoolQueryButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolQueryButton.Location = new System.Drawing.Point(346, 45);
             this.SchoolQueryButton.Name = "SchoolQueryButton";
-            this.SchoolQueryButton.Size = new System.Drawing.Size(150, 44);
+            this.SchoolQueryButton.Size = new System.Drawing.Size(75, 23);
             this.SchoolQueryButton.TabIndex = 4;
             this.SchoolQueryButton.Text = "Query";
             this.SchoolQueryButton.UseVisualStyleBackColor = true;
@@ -225,25 +213,23 @@
             0,
             0,
             0});
-            this.SchoolDistanceUpDown.Location = new System.Drawing.Point(392, 88);
-            this.SchoolDistanceUpDown.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolDistanceUpDown.Location = new System.Drawing.Point(196, 46);
             this.SchoolDistanceUpDown.Maximum = new decimal(new int[] {
             500,
             0,
             0,
             0});
             this.SchoolDistanceUpDown.Name = "SchoolDistanceUpDown";
-            this.SchoolDistanceUpDown.Size = new System.Drawing.Size(270, 41);
+            this.SchoolDistanceUpDown.Size = new System.Drawing.Size(135, 24);
             this.SchoolDistanceUpDown.TabIndex = 3;
             // 
             // SchoolDistanceLabel
             // 
             this.SchoolDistanceLabel.AutoSize = true;
             this.SchoolDistanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SchoolDistanceLabel.Location = new System.Drawing.Point(384, 46);
-            this.SchoolDistanceLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.SchoolDistanceLabel.Location = new System.Drawing.Point(192, 24);
             this.SchoolDistanceLabel.Name = "SchoolDistanceLabel";
-            this.SchoolDistanceLabel.Size = new System.Drawing.Size(130, 36);
+            this.SchoolDistanceLabel.Size = new System.Drawing.Size(66, 18);
             this.SchoolDistanceLabel.TabIndex = 2;
             this.SchoolDistanceLabel.Text = "Distance";
             // 
@@ -251,10 +237,9 @@
             // 
             this.SchoolLabel.AutoSize = true;
             this.SchoolLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SchoolLabel.Location = new System.Drawing.Point(14, 46);
-            this.SchoolLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.SchoolLabel.Location = new System.Drawing.Point(7, 24);
             this.SchoolLabel.Name = "SchoolLabel";
-            this.SchoolLabel.Size = new System.Drawing.Size(108, 36);
+            this.SchoolLabel.Size = new System.Drawing.Size(55, 18);
             this.SchoolLabel.TabIndex = 1;
             this.SchoolLabel.Text = "School";
             // 
@@ -262,15 +247,15 @@
             // 
             this.SchoolCombobox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SchoolCombobox.FormattingEnabled = true;
-            this.SchoolCombobox.Location = new System.Drawing.Point(12, 87);
-            this.SchoolCombobox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SchoolCombobox.Location = new System.Drawing.Point(6, 45);
             this.SchoolCombobox.Name = "SchoolCombobox";
-            this.SchoolCombobox.Size = new System.Drawing.Size(360, 33);
+            this.SchoolCombobox.Size = new System.Drawing.Size(182, 21);
             this.SchoolCombobox.TabIndex = 0;
             this.SchoolCombobox.DropDown += new System.EventHandler(this.SchoolCombobox_DropDown);
             // 
             // ParametersGroupBox
             // 
+            this.ParametersGroupBox.Controls.Add(this.DetachedGarageCheckBox);
             this.ParametersGroupBox.Controls.Add(this.GarageCheckBox);
             this.ParametersGroupBox.Controls.Add(this.ParametersQueryButton);
             this.ParametersGroupBox.Controls.Add(this.SqFtUpDown);
@@ -282,11 +267,9 @@
             this.ParametersGroupBox.Controls.Add(this.ApartmentCheckBox);
             this.ParametersGroupBox.Controls.Add(this.HouseCheckBox);
             this.ParametersGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ParametersGroupBox.Location = new System.Drawing.Point(28, 690);
-            this.ParametersGroupBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ParametersGroupBox.Location = new System.Drawing.Point(14, 359);
             this.ParametersGroupBox.Name = "ParametersGroupBox";
-            this.ParametersGroupBox.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.ParametersGroupBox.Size = new System.Drawing.Size(978, 183);
+            this.ParametersGroupBox.Size = new System.Drawing.Size(489, 95);
             this.ParametersGroupBox.TabIndex = 2;
             this.ParametersGroupBox.TabStop = false;
             this.ParametersGroupBox.Text = "Specific Residence Parameters";
@@ -295,10 +278,9 @@
             // 
             this.GarageCheckBox.AutoSize = true;
             this.GarageCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GarageCheckBox.Location = new System.Drawing.Point(524, 46);
-            this.GarageCheckBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.GarageCheckBox.Location = new System.Drawing.Point(262, 24);
             this.GarageCheckBox.Name = "GarageCheckBox";
-            this.GarageCheckBox.Size = new System.Drawing.Size(145, 40);
+            this.GarageCheckBox.Size = new System.Drawing.Size(76, 22);
             this.GarageCheckBox.TabIndex = 8;
             this.GarageCheckBox.Text = "Garage";
             this.GarageCheckBox.UseVisualStyleBackColor = true;
@@ -306,10 +288,9 @@
             // ParametersQueryButton
             // 
             this.ParametersQueryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ParametersQueryButton.Location = new System.Drawing.Point(688, 46);
-            this.ParametersQueryButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ParametersQueryButton.Location = new System.Drawing.Point(344, 24);
             this.ParametersQueryButton.Name = "ParametersQueryButton";
-            this.ParametersQueryButton.Size = new System.Drawing.Size(150, 44);
+            this.ParametersQueryButton.Size = new System.Drawing.Size(75, 23);
             this.ParametersQueryButton.TabIndex = 5;
             this.ParametersQueryButton.Text = "Query";
             this.ParametersQueryButton.UseVisualStyleBackColor = true;
@@ -323,8 +304,7 @@
             0,
             0,
             0});
-            this.SqFtUpDown.Location = new System.Drawing.Point(366, 94);
-            this.SqFtUpDown.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SqFtUpDown.Location = new System.Drawing.Point(183, 49);
             this.SqFtUpDown.Maximum = new decimal(new int[] {
             6000,
             0,
@@ -336,7 +316,7 @@
             0,
             0});
             this.SqFtUpDown.Name = "SqFtUpDown";
-            this.SqFtUpDown.Size = new System.Drawing.Size(140, 41);
+            this.SqFtUpDown.Size = new System.Drawing.Size(70, 24);
             this.SqFtUpDown.TabIndex = 7;
             this.SqFtUpDown.Value = new decimal(new int[] {
             1200,
@@ -348,60 +328,55 @@
             // 
             this.SqFtLabel.AutoSize = true;
             this.SqFtLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SqFtLabel.Location = new System.Drawing.Point(360, 46);
-            this.SqFtLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.SqFtLabel.Location = new System.Drawing.Point(180, 24);
             this.SqFtLabel.Name = "SqFtLabel";
-            this.SqFtLabel.Size = new System.Drawing.Size(151, 36);
+            this.SqFtLabel.Size = new System.Drawing.Size(75, 18);
             this.SqFtLabel.TabIndex = 6;
             this.SqFtLabel.Text = "Min Sq Ft.";
             // 
             // BathUpDown
             // 
             this.BathUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BathUpDown.Location = new System.Drawing.Point(272, 94);
-            this.BathUpDown.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BathUpDown.Location = new System.Drawing.Point(136, 49);
             this.BathUpDown.Maximum = new decimal(new int[] {
             6,
             0,
             0,
             0});
             this.BathUpDown.Name = "BathUpDown";
-            this.BathUpDown.Size = new System.Drawing.Size(68, 41);
+            this.BathUpDown.Size = new System.Drawing.Size(34, 24);
             this.BathUpDown.TabIndex = 5;
             // 
             // BathLabel
             // 
             this.BathLabel.AutoSize = true;
             this.BathLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BathLabel.Location = new System.Drawing.Point(272, 46);
-            this.BathLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.BathLabel.Location = new System.Drawing.Point(136, 24);
             this.BathLabel.Name = "BathLabel";
-            this.BathLabel.Size = new System.Drawing.Size(76, 36);
+            this.BathLabel.Size = new System.Drawing.Size(38, 18);
             this.BathLabel.TabIndex = 4;
             this.BathLabel.Text = "Bath";
             // 
             // BedUpDown
             // 
             this.BedUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BedUpDown.Location = new System.Drawing.Point(192, 94);
-            this.BedUpDown.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BedUpDown.Location = new System.Drawing.Point(96, 49);
             this.BedUpDown.Maximum = new decimal(new int[] {
             6,
             0,
             0,
             0});
             this.BedUpDown.Name = "BedUpDown";
-            this.BedUpDown.Size = new System.Drawing.Size(68, 41);
+            this.BedUpDown.Size = new System.Drawing.Size(34, 24);
             this.BedUpDown.TabIndex = 3;
             // 
             // BedLabel
             // 
             this.BedLabel.AutoSize = true;
             this.BedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BedLabel.Location = new System.Drawing.Point(192, 46);
-            this.BedLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.BedLabel.Location = new System.Drawing.Point(96, 24);
             this.BedLabel.Name = "BedLabel";
-            this.BedLabel.Size = new System.Drawing.Size(68, 36);
+            this.BedLabel.Size = new System.Drawing.Size(34, 18);
             this.BedLabel.TabIndex = 2;
             this.BedLabel.Text = "Bed";
             // 
@@ -409,10 +384,9 @@
             // 
             this.ApartmentCheckBox.AutoSize = true;
             this.ApartmentCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ApartmentCheckBox.Location = new System.Drawing.Point(12, 98);
-            this.ApartmentCheckBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ApartmentCheckBox.Location = new System.Drawing.Point(6, 51);
             this.ApartmentCheckBox.Name = "ApartmentCheckBox";
-            this.ApartmentCheckBox.Size = new System.Drawing.Size(183, 40);
+            this.ApartmentCheckBox.Size = new System.Drawing.Size(94, 22);
             this.ApartmentCheckBox.TabIndex = 1;
             this.ApartmentCheckBox.Text = "Apartment";
             this.ApartmentCheckBox.UseVisualStyleBackColor = true;
@@ -421,10 +395,9 @@
             // 
             this.HouseCheckBox.AutoSize = true;
             this.HouseCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HouseCheckBox.Location = new System.Drawing.Point(12, 44);
-            this.HouseCheckBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.HouseCheckBox.Location = new System.Drawing.Point(6, 23);
             this.HouseCheckBox.Name = "HouseCheckBox";
-            this.HouseCheckBox.Size = new System.Drawing.Size(133, 40);
+            this.HouseCheckBox.Size = new System.Drawing.Size(71, 22);
             this.HouseCheckBox.TabIndex = 0;
             this.HouseCheckBox.Text = "House";
             this.HouseCheckBox.UseVisualStyleBackColor = true;
@@ -433,11 +406,9 @@
             // 
             this.TownersGroupBox.Controls.Add(this.TownersQueryButton);
             this.TownersGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TownersGroupBox.Location = new System.Drawing.Point(28, 885);
-            this.TownersGroupBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.TownersGroupBox.Location = new System.Drawing.Point(14, 460);
             this.TownersGroupBox.Name = "TownersGroupBox";
-            this.TownersGroupBox.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.TownersGroupBox.Size = new System.Drawing.Size(978, 112);
+            this.TownersGroupBox.Size = new System.Drawing.Size(489, 58);
             this.TownersGroupBox.TabIndex = 2;
             this.TownersGroupBox.TabStop = false;
             this.TownersGroupBox.Text = "List of Properties Owned by Out-Of-Towners";
@@ -445,33 +416,31 @@
             // TownersQueryButton
             // 
             this.TownersQueryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TownersQueryButton.Location = new System.Drawing.Point(688, 44);
-            this.TownersQueryButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.TownersQueryButton.Location = new System.Drawing.Point(344, 23);
             this.TownersQueryButton.Name = "TownersQueryButton";
-            this.TownersQueryButton.Size = new System.Drawing.Size(150, 44);
+            this.TownersQueryButton.Size = new System.Drawing.Size(75, 23);
             this.TownersQueryButton.TabIndex = 9;
             this.TownersQueryButton.Text = "Query";
             this.TownersQueryButton.UseVisualStyleBackColor = true;
+            this.TownersQueryButton.Click += new System.EventHandler(this.TownersQueryButton_Click);
             // 
             // QueryResultsLabel
             // 
             this.QueryResultsLabel.AutoSize = true;
             this.QueryResultsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.QueryResultsLabel.Location = new System.Drawing.Point(1014, 17);
-            this.QueryResultsLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.QueryResultsLabel.Location = new System.Drawing.Point(507, 9);
             this.QueryResultsLabel.Name = "QueryResultsLabel";
-            this.QueryResultsLabel.Size = new System.Drawing.Size(216, 36);
+            this.QueryResultsLabel.Size = new System.Drawing.Size(115, 18);
             this.QueryResultsLabel.TabIndex = 3;
             this.QueryResultsLabel.Text = "Query Results";
             // 
             // QueryOutputTextbox
             // 
-            this.QueryOutputTextbox.Location = new System.Drawing.Point(1018, 58);
-            this.QueryOutputTextbox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.QueryOutputTextbox.Location = new System.Drawing.Point(509, 30);
             this.QueryOutputTextbox.Multiline = true;
             this.QueryOutputTextbox.Name = "QueryOutputTextbox";
             this.QueryOutputTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.QueryOutputTextbox.Size = new System.Drawing.Size(1048, 935);
+            this.QueryOutputTextbox.Size = new System.Drawing.Size(526, 488);
             this.QueryOutputTextbox.TabIndex = 4;
             // 
             // BusinessRangeGroupBox
@@ -482,11 +451,9 @@
             this.BusinessRangeGroupBox.Controls.Add(this.ForSaleLabel);
             this.BusinessRangeGroupBox.Controls.Add(this.ForSaleCombobox);
             this.BusinessRangeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BusinessRangeGroupBox.Location = new System.Drawing.Point(24, 510);
-            this.BusinessRangeGroupBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BusinessRangeGroupBox.Location = new System.Drawing.Point(12, 265);
             this.BusinessRangeGroupBox.Name = "BusinessRangeGroupBox";
-            this.BusinessRangeGroupBox.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.BusinessRangeGroupBox.Size = new System.Drawing.Size(978, 169);
+            this.BusinessRangeGroupBox.Size = new System.Drawing.Size(489, 88);
             this.BusinessRangeGroupBox.TabIndex = 5;
             this.BusinessRangeGroupBox.TabStop = false;
             this.BusinessRangeGroupBox.Text = "Hiring Business(es) Witin Range of For Sale Residence";
@@ -494,10 +461,9 @@
             // BusinessQueryButton
             // 
             this.BusinessQueryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BusinessQueryButton.Location = new System.Drawing.Point(692, 87);
-            this.BusinessQueryButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BusinessQueryButton.Location = new System.Drawing.Point(346, 45);
             this.BusinessQueryButton.Name = "BusinessQueryButton";
-            this.BusinessQueryButton.Size = new System.Drawing.Size(150, 44);
+            this.BusinessQueryButton.Size = new System.Drawing.Size(75, 23);
             this.BusinessQueryButton.TabIndex = 4;
             this.BusinessQueryButton.Text = "Query";
             this.BusinessQueryButton.UseVisualStyleBackColor = true;
@@ -511,25 +477,23 @@
             0,
             0,
             0});
-            this.BusinessDistanceUpDown.Location = new System.Drawing.Point(392, 88);
-            this.BusinessDistanceUpDown.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BusinessDistanceUpDown.Location = new System.Drawing.Point(196, 46);
             this.BusinessDistanceUpDown.Maximum = new decimal(new int[] {
             500,
             0,
             0,
             0});
             this.BusinessDistanceUpDown.Name = "BusinessDistanceUpDown";
-            this.BusinessDistanceUpDown.Size = new System.Drawing.Size(270, 41);
+            this.BusinessDistanceUpDown.Size = new System.Drawing.Size(135, 24);
             this.BusinessDistanceUpDown.TabIndex = 3;
             // 
             // BusinessDistacnceLabel
             // 
             this.BusinessDistacnceLabel.AutoSize = true;
             this.BusinessDistacnceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BusinessDistacnceLabel.Location = new System.Drawing.Point(384, 46);
-            this.BusinessDistacnceLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.BusinessDistacnceLabel.Location = new System.Drawing.Point(192, 24);
             this.BusinessDistacnceLabel.Name = "BusinessDistacnceLabel";
-            this.BusinessDistacnceLabel.Size = new System.Drawing.Size(130, 36);
+            this.BusinessDistacnceLabel.Size = new System.Drawing.Size(66, 18);
             this.BusinessDistacnceLabel.TabIndex = 2;
             this.BusinessDistacnceLabel.Text = "Distance";
             // 
@@ -537,10 +501,9 @@
             // 
             this.ForSaleLabel.AutoSize = true;
             this.ForSaleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ForSaleLabel.Location = new System.Drawing.Point(14, 46);
-            this.ForSaleLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.ForSaleLabel.Location = new System.Drawing.Point(7, 24);
             this.ForSaleLabel.Name = "ForSaleLabel";
-            this.ForSaleLabel.Size = new System.Drawing.Size(278, 36);
+            this.ForSaleLabel.Size = new System.Drawing.Size(139, 18);
             this.ForSaleLabel.TabIndex = 1;
             this.ForSaleLabel.Text = "For-Sale Residence";
             // 
@@ -548,19 +511,29 @@
             // 
             this.ForSaleCombobox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForSaleCombobox.FormattingEnabled = true;
-            this.ForSaleCombobox.Location = new System.Drawing.Point(12, 87);
-            this.ForSaleCombobox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ForSaleCombobox.Location = new System.Drawing.Point(6, 45);
             this.ForSaleCombobox.MaxDropDownItems = 10;
             this.ForSaleCombobox.Name = "ForSaleCombobox";
-            this.ForSaleCombobox.Size = new System.Drawing.Size(360, 33);
+            this.ForSaleCombobox.Size = new System.Drawing.Size(182, 21);
             this.ForSaleCombobox.TabIndex = 0;
             this.ForSaleCombobox.DropDown += new System.EventHandler(this.ForSaleCombobox_DropDown);
             // 
+            // DetachedGarageCheckBox
+            // 
+            this.DetachedGarageCheckBox.AutoSize = true;
+            this.DetachedGarageCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DetachedGarageCheckBox.Location = new System.Drawing.Point(262, 49);
+            this.DetachedGarageCheckBox.Name = "DetachedGarageCheckBox";
+            this.DetachedGarageCheckBox.Size = new System.Drawing.Size(92, 22);
+            this.DetachedGarageCheckBox.TabIndex = 9;
+            this.DetachedGarageCheckBox.Text = "Attached?";
+            this.DetachedGarageCheckBox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2092, 1013);
+            this.ClientSize = new System.Drawing.Size(1046, 527);
             this.Controls.Add(this.BusinessRangeGroupBox);
             this.Controls.Add(this.QueryOutputTextbox);
             this.Controls.Add(this.QueryResultsLabel);
@@ -568,7 +541,6 @@
             this.Controls.Add(this.ParametersGroupBox);
             this.Controls.Add(this.SchoolRangeGroupBox);
             this.Controls.Add(this.PriceRangeGroupBox);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "Form1";
             this.Text = "Form1";
             this.PriceRangeGroupBox.ResumeLayout(false);
@@ -630,6 +602,7 @@
         private System.Windows.Forms.CheckBox GarageCheckBox;
         private System.Windows.Forms.Button ParametersQueryButton;
         private System.Windows.Forms.Button TownersQueryButton;
+        private System.Windows.Forms.CheckBox DetachedGarageCheckBox;
     }
 }
 

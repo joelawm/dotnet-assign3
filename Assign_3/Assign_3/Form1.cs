@@ -186,12 +186,106 @@ namespace Assign_3
             bool garageCheck = GarageCheckBox.Checked;
 
             QueryOutputTextbox.Text = string.Format("House with at least {0} bed, {1} bath, and {2} sq. foot {3}\r\n" +
-                "-----------------------------------------------------------------------------------------",
+                "-----------------------------------------------------------------------------------------\r\n",
                 numOfBed, numOfBath, numOfSpace, (garageCheck) ? "with garage." : "without garage.");
 
-            if (HouseCheckBox.Checked)
+            //counter 
+            int results = 0;
+
+            //create both of the list
+            List<residentialInfo>  DList = ResidentialPara(DekalbCommunity);
+            List<residentialInfo> SList = ResidentialPara(SycamoreCommunity);
+
+            //combine the 2 lists
+            DList.AddRange(SList);
+
+            //reorder the list
+            //DList = DList.OrderBy(i => i.ForSale).ToList();
+
+            //go throught the list and print if needed
+            foreach (var pro in DList)
             {
+                //split the first and last name for output
+                string[] splitted = pro.FullName.Split(' ');
+
+                if (HouseCheckBox.Checked == true && pro.proType == true && pro.Bath >= BathUpDown.Value && pro.Bed >= BedUpDown.Value && pro.Sqft >= SqFtUpDown.Value)
+                {
+                    if(GarageCheckBox.Checked == true && DetachedGarageCheckBox.Checked == false && pro.Garage == true && pro.AttachedGarage == false)
+                    {
+                        QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3} \r\nOwner: {4}, {5} | {6}, {7} baths, {8} sq.ft. \r\n {9} : {10}     {11:C0}\r\n\r\n",
+                           pro.StreetAddr, pro.City, pro.State, pro.Zip, splitted[1], splitted[0].Trim(new char[] { ',' }), (pro.Bed == 1) ? " bed " : pro.Bed + " beds ", pro.Bath, pro.Sqft,
+                           (!pro.Garage) ? "With out garage" : (pro.AttachedGarage == true) ? "With attach Garage" : "With  detatched garage",
+                           (pro.Flood == 1) ? pro.Flood + " floor." : pro.Flood + " floors.", Convert.ToUInt32(pro.ForSale)
+                           ));
+                        results += 1;
+                    }
+                    else if(GarageCheckBox.Checked == true && DetachedGarageCheckBox.Checked == true && pro.Garage == true && pro.AttachedGarage == true)
+                    {
+                        QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3} \r\nOwner: {4}, {5} | {6}, {7} baths, {8} sq.ft. \r\n {9} : {10}     {11:C0}\r\n\r\n",
+                           pro.StreetAddr, pro.City, pro.State, pro.Zip, splitted[1], splitted[0].Trim(new char[] { ',' }), (pro.Bed == 1) ? " bed " : pro.Bed + " beds ", pro.Bath, pro.Sqft,
+                           (!pro.Garage) ? "With out garage" : (pro.AttachedGarage == true) ? "With attach Garage" : "With  detatched garage",
+                           (pro.Flood == 1) ? pro.Flood + " floor." : pro.Flood + " floors.", Convert.ToUInt32(pro.ForSale)
+                           ));
+                        results += 1;
+                    }
+                    else if (GarageCheckBox.Checked == false)
+                    {
+                        QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3} \r\nOwner: {4}, {5} | {6}, {7} baths, {8} sq.ft. \r\n {9} : {10}     {11:C0}\r\n\r\n",
+                           pro.StreetAddr, pro.City, pro.State, pro.Zip, splitted[1], splitted[0].Trim(new char[] { ',' }), (pro.Bed == 1) ? " bed " : pro.Bed + " beds ", pro.Bath, pro.Sqft,
+                           (!pro.Garage) ? "With out garage" : (pro.AttachedGarage == true) ? "With attach Garage" : "With  detatched garage",
+                           (pro.Flood == 1) ? pro.Flood + " floor." : pro.Flood + " floors.", Convert.ToUInt32(pro.ForSale)
+                           ));
+                        results += 1;
+                    }
+                }
+                else if (ApartmentCheckBox.Checked == true && pro.proType == false && pro.Bath >= BathUpDown.Value && pro.Bed >= BedUpDown.Value && pro.Sqft >= SqFtUpDown.Value && GarageCheckBox.Checked == false)
+                {
+                    QueryOutputTextbox.AppendText(string.Format("{0} Apt. # {1} {2}, {3} {4} \r\nOwner: {5}, {6} | {7}, {8} baths, {9} sq.ft. {10:C0}\r\n\r\n\r\n",
+                           pro.StreetAddr, pro.apt, pro.City, pro.State, pro.Zip, splitted[1], splitted[0].Trim(new char[] { ',' }), (pro.Bed == 1) ? " bed " : pro.Bed + " beds ", pro.Bath, pro.Sqft, Convert.ToUInt32(pro.ForSale)));
+                    results += 1;
+                }
             }
+
+            if (results == 0)
+            {
+                QueryOutputTextbox.AppendText("Your query yielded no matches.\r\n");
+            }
+
+            QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
+        }
+
+        private List<residentialInfo> ResidentialPara(Community comm)
+        {
+            var property = from pro in comm.Props
+                           where (pro is House) || (pro is Apartment)
+                           let pr = pro.ForSale.Split(':')
+                           where (pr[0] == "T")
+                           let price = Convert.ToInt32(pr[1])
+                           let proType = (pro is House) ? true : false
+                           let garage = (proType) ? (pro as House).Garage : false
+                           let attachGarage = (garage) ? (pro as House).AttatchedGarage : false
+                           from res in comm.Residents
+                           where (res.Id == pro.OwnerId)
+                           orderby price ascending
+                           select new residentialInfo()
+                           {
+                               StreetAddr = pro.StreetAddr,
+                               City = pro.City,
+                               State = pro.State,
+                               Zip = pro.Zip,
+                               AttachedGarage = attachGarage,
+                               Garage = garage,
+                               Bed = (pro as Residential).Bedrooms,
+                               Bath = (pro as Residential).Baths,
+                               Sqft = (pro as Residential).Sqft,
+                               Flood = (proType) ? (pro as House).Flood : 0,
+                               ForSale = pro.ForSale.Split(':')[1],
+                               FullName = res.FullName,
+                               proType = proType,
+                               apt = (proType) ? null : (pro as Apartment).Unit
+                           };
+
+            return property.ToList();
         }
 
         private void SchoolCombobox_DropDown(object sender, EventArgs e)
@@ -324,9 +418,11 @@ namespace Assign_3
 
             if (ResidentialtCheckBox.Checked)
                 PrintResidential(ResidentialForSale(DekalbCommunity, MinPriceTrackBar.Value, MaxPriceTrackBar.Value));
-            else if(BusinessCheckBox.Checked)
+
+            if(BusinessCheckBox.Checked)
                 PrintBusiness(BusinessForSale(DekalbCommunity, MinPriceTrackBar.Value, MaxPriceTrackBar.Value));
-            else if (SchoolCheckBox.Checked)
+
+            if (SchoolCheckBox.Checked)
                 PrintSchool(SchoolForSale(DekalbCommunity, MinPriceTrackBar.Value, MaxPriceTrackBar.Value));
         }
         
@@ -413,7 +509,7 @@ namespace Assign_3
         {
             foreach (var school in selector)
             {
-                QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3} Ownwe: {4}\r\n",
+                QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3} Ownwer: {4}\r\n",
                     school.StreetAddr, school.City, school.State, school.Zip, school.FullName));
 
                 QueryOutputTextbox.AppendText(string.Format("{1}, established in {2}\r\n",
@@ -458,13 +554,64 @@ namespace Assign_3
                 QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}\r\n",
                     bus.StreetAddr, bus.City, bus.State, bus.Zip));
 
-                QueryOutputTextbox.AppendText(string.Format("Ownwe: {0} |  ${1}\r\n", bus.FullName,bus.ForSale));
+                QueryOutputTextbox.AppendText(string.Format("Ownwer: {0} |  ${1}\r\n", bus.FullName,bus.ForSale));
 
 
                 QueryOutputTextbox.AppendText(string.Format("{2}, a {3} type of business, established in {4}\r\n\r\n",
                         (int)bus.distance, bus.Position, bus.Name, bus.Type, bus.YearBuild
                         ));
             }
+        }
+
+        //out of towners button click
+        private void TownersQueryButton_Click(object sender, EventArgs e)
+        {
+            QueryOutputTextbox.Text = string.Format("Properties Ownded by Out-Of-Towners\r\n" +
+                                                    "------------------------------------------------------------------------------------------\r\n");
+            //create both of the list
+            List<residentialOOT> DList = ResidentialListOOT(DekalbCommunity);
+            List<residentialOOT> SList = ResidentialListOOT(SycamoreCommunity);
+
+            //combine the 2 lists
+            DList.AddRange(SList);
+
+
+            QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
+        }
+
+        //list of residents
+        private List<residentialOOT> ResidentialListOOT(Community comm)
+        {
+            var property = from pro in comm.Props
+                           where (pro is House) || (pro is Apartment) || (pro is Business) || (pro is School)
+                           let proType = (pro is House) ? true : false
+                           let garage = (proType) ? (pro as House).Garage : false
+                           let attachGarage = (garage) ? (pro as House).AttatchedGarage : false
+                           from res in comm.Residents
+                           where (res.Id == pro.OwnerId)
+                           select new residentialOOT()
+                           {
+                               StreetAddr = pro.StreetAddr,
+                               City = pro.City,
+                               State = pro.State,
+                               Zip = pro.Zip,
+                               AttachedGarage = attachGarage,
+                               Garage = garage,
+                               Bed = (pro as Residential).Bedrooms,
+                               Bath = (pro as Residential).Baths,
+                               Sqft = (pro as Residential).Sqft,
+                               Flood = (proType) ? (pro as House).Flood : 0,
+                               ForSale = pro.ForSale,
+                               FullName = res.FullName,
+                               Residencelds = res.Residencelds,
+                               Name = (pro as Business).Name,
+                               YearBuild = (pro as Business).YearEstablished,
+                               Type = (pro as Business).Type,
+                               proType = proType,
+                               apt = (proType) ? null : (pro as Apartment).Unit
+                           };
+
+            return property.ToList();
         }
     }
 }
