@@ -24,6 +24,7 @@ namespace Assign_3
 
             ActiveSycamore activeSycamore = new ActiveSycamore();
             SycamoreCommunity = activeSycamore.ActiveSycamore_Files();
+
         }
         
         // Cleck forsale dropdown and show all the properties
@@ -87,58 +88,59 @@ namespace Assign_3
             QueryOutputTextbox.Text = string.Format("Hiring Businesses within {0} unit of distance\r\n\tfrom {1}\r\n" +
                                                     "------------------------------------------------------------------------------------------\r\n", distance, stAddr[0]);
 
+            Community comm;
+
             if (ForSaleCombobox.SelectedIndex > (DekalbCommunity.Population + 5))
-                PrintNearbyBusiness(FindNearbyBusiness(SycamoreCommunity, stAddr, distance));
+                comm = SycamoreCommunity;
             else
-                PrintNearbyBusiness(FindNearbyBusiness(DekalbCommunity, stAddr, distance));
+                comm = DekalbCommunity;
+
+            SortedList<int, CommunityInfo> propertyList = new SortedList<int, CommunityInfo>();
+            List<Community> communities = new List<Community>();
+            communities.Add(DekalbCommunity);
+            communities.Add(SycamoreCommunity);
+
+            var list = from res in comm.Props
+                        where (res is House) || (res is Apartment)
+                        where (res.StreetAddr == stAddr[0])
+                        from n in communities
+                        from pro in n.Props
+                        where (pro is Business)
+                        where pro.ForSale.Split(':')[0] == "T"
+                        let x = Math.Pow((int)(res.X - pro.X), 2)
+                        let y = Math.Pow((int)(res.Y - pro.Y), 2)
+                        where (x + y) < Math.Pow(distance, 2)
+                        from n1 in n.Residents
+                        where n1.Id == pro.OwnerId
+                        orderby (x + y) ascending
+                        select new CommunityInfo()
+                        {
+                            id = pro.Id,
+                            property = pro,
+                            FullName = n1.FullName,
+                            distance = (int)Math.Sqrt(x + y),
+                            type = (pro is House) ? 0 : 1
+                        };
+
+            PrintNearbyBusiness(list);
 
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
         }
 
-        private List<BussinessInfo> FindNearbyBusiness(Community comm, string[] stAddr, ushort distance)
-        {
-            var selector = from pro in comm.Props
-                           where (pro.StreetAddr == stAddr[0])
-                           from busi in comm.Props
-                           where (busi is Business)
-                           let x = Math.Pow((int)(pro.X - busi.X), 2)
-                           let y = Math.Pow((int)(pro.Y - busi.Y), 2)
-                           let ownId = pro.OwnerId
-                           where (busi as Business).ActiveRecruitment != 0
-                           where (x + y) <= Math.Pow(distance, 2)
-                           from res in comm.Residents
-                           where (busi.OwnerId == res.Id)
-                           orderby (busi as Business).YearEstablished ascending
-                           select new BussinessInfo(){
-                               FullName = res.FullName,
-                               StreetAddr = busi.StreetAddr,
-                               City = busi.City,
-                               State = busi.State,
-                               Zip = busi.Zip,
-                               distance = Math.Sqrt(x + y),
-                               OwnerId = ownId,
-                               Name = (busi as Business).Name,
-                               YearBuild = (busi as Business).YearEstablished,
-                               Type = (busi as Business).Type,
-                               Position = (busi as Business).ActiveRecruitment
-                           };
-
-            return selector.ToList();
-        }
-
-        private void PrintNearbyBusiness(List<BussinessInfo> selector)
+        private void PrintNearbyBusiness(IEnumerable<CommunityInfo> selector)
         {
             foreach (var bus in selector)
             {
+
                 QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}\r\n",
-                    bus.StreetAddr, bus.City, bus.State, bus.Zip));
+                    bus.property.StreetAddr, bus.property.City, bus.property.State, bus.property.Zip));
 
                 QueryOutputTextbox.AppendText(string.Format("Ownwe: {0} |  ", bus.FullName));
 
 
                 QueryOutputTextbox.AppendText(string.Format("{0} units away, with {1} open positions \r\n{2}, " +
                         "a {3} type of business, established in {4}\r\n\r\n",
-                        (int)bus.distance, bus.Position, bus.Name, bus.Type, bus.YearBuild
+                        bus.distance, (bus.property as Business).ActiveRecruitment, (bus.property as Business).Name, (bus.property as Business).Type, (bus.property as Business).YearEstablished
                         ));
             }
         }
@@ -345,77 +347,71 @@ namespace Assign_3
                 else
                     break;
 
+            SortedList<int, CommunityInfo> propertyList = new SortedList<int, CommunityInfo>();
+
+            List<Community> communities = new List<Community>();
+            communities.Add(DekalbCommunity);
+            communities.Add(SycamoreCommunity);
+
             Community comm;
             if (SchoolCombobox.SelectedIndex < index)
                 comm = DekalbCommunity;
             else
                 comm = SycamoreCommunity;
 
-            PrintNearbyForSale(FindNearbyForSale(comm, schoolName, distance));
+            var list = from school in comm.Props
+                        where (school is School) && ((school as School).Name == schoolName)
+                        from n in communities
+                        from pro in n.Props
+                        where (pro is Apartment) || (pro is House)
+                        where pro.ForSale.Split(':')[0] == "T"
+                        let x = Math.Pow((int)(school.X - pro.X), 2)
+                        let y = Math.Pow((int)(school.Y - pro.Y), 2)
+                        where (x + y) < Math.Pow(distance, 2)
+                        from n1 in n.Residents
+                        where n1.Id == pro.OwnerId
+                        orderby (x + y) ascending
+                        select new CommunityInfo()
+                        {
+                            FullName = n1.FullName,
+                            id = pro.OwnerId,
+                            property = pro,
+                            distance = (int)Math.Sqrt(x + y),
+                            type = (pro is House) ? 0 : 1
+                        };
+
+            PrintNearbyForSale(list);
         }
 
-        private List<residentialInfo> FindNearbyForSale(Community comm, string schoolName, int distance)
-        {
-            var a = from school in comm.Props
-                    where (school is School) && ((school as School).Name == schoolName)
-                    from pro in comm.Props
-                    let x = Math.Pow((int)(school.X - pro.X), 2)
-                    let y = Math.Pow((int)(school.X - pro.X), 2)
-                    let proType = (pro is House) ? true : false
-                    let garage = (proType) ? (pro as House).Garage : false
-                    let attachGarage = (garage)? (pro as House).AttatchedGarage: false
-                    where (pro.ForSale.Split(':')[0] == "T") && ((x + y) < Math.Pow(distance, 2))
-                    where (pro is Apartment) || (pro is House)
-                    from res in comm.Residents
-                    where (res.Id == pro.OwnerId)
-                    orderby (x + y) ascending
-                    select new residentialInfo()
-                    {
-                        StreetAddr = pro.StreetAddr,
-                        City = pro.City,
-                        State = pro.State,
-                        Zip = pro.Zip,
-                        distance = Math.Sqrt(x + y),
-                        AttachedGarage = attachGarage,
-                        Garage = garage,
-                        Bed = (pro as Residential).Bedrooms,
-                        Bath = (pro as Residential).Baths,
-                        Sqft = (pro as Residential).Sqft,
-                        Flood = (proType)? (pro as House).Flood:0,
-                        ForSale = pro.ForSale.Split(':')[1],
-                        FullName = res.FullName,
-                        proType = proType,
-                        apt = (proType)?null:(pro as Apartment).Unit
-                    };
-            return a.ToList();
-        }
-
-        private void PrintNearbyForSale(List<residentialInfo> selector)
+        private void PrintNearbyForSale(IEnumerable <CommunityInfo> selector)
         {
             foreach (var pro in selector)
             {
+
                 QueryOutputTextbox.AppendText(string.Format("{0}{1} {2}, {3} {4}   {5} units away\r\n",
-                            pro.StreetAddr, (pro.proType) ? "" : " #Apt " + pro.apt + ' ', pro.City, pro.State, pro.Zip, (int)pro.distance
+                            pro.property.StreetAddr, (pro.type == 0) ? "" : " #Apt " + (pro.property as Apartment).Unit + ' ', 
+                            pro.property.City, pro.property.State, pro.property.Zip, pro.distance
                             ));
 
                 QueryOutputTextbox.AppendText(string.Format("Owner: {0} | ", pro.FullName));
 
                 QueryOutputTextbox.AppendText(string.Format("{0} bed, {1} bath, {2} sq.ft \r\n {3} : {4}   ${5}\r\n\r\n",
-                            pro.Bed, pro.Bath, pro.Sqft,
-                            (!pro.Garage) ? "With out garage" : (pro.AttachedGarage == true) ? "With attach Garage" : "With garage",
-                            (pro.Flood == 0) ? "" : pro.Flood + " floors.", pro.ForSale
+                            (pro.property as Residential).Bedrooms, (pro.property as Residential).Baths, (pro.property as Residential).Sqft,
+                            (pro.type == 1) ? "With out garage" : ((pro.property as House).AttatchedGarage == true) ? "With attach Garage" : "With garage",
+                            (pro.type == 1) ? "" : (pro.property as House).Flood + " floors.", pro.property.ForSale.Split(':')[1]
                             ));
             }
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
         }
         
         class CommunityInfo
-        {
+        { 
             string fullName = "N/A";
             public uint id { get; set; }
             public string FullName { get; set; }
             public Property property { get; set; }
             public int type { get; set; }
+            public int distance;
         }
 
         //Click of the first price button Displaying price info on different properties.
@@ -425,50 +421,41 @@ namespace Assign_3
                 "------------------------------------------------------------------------------------------\r\n", 
                 String.Format("{0:C0}", MinPriceTrackBar.Value), String.Format("{0:C0}", MaxPriceTrackBar.Value));
 
-            var dekalbSaleList = from n in DekalbCommunity.Props
+
+            List<Community> communities = new List<Community>();
+            communities.Add(DekalbCommunity);
+            communities.Add(SycamoreCommunity);
+
+
+            var l = communities.GroupBy(p => p.Name);
+
+            var List =           from n2 in communities
+                                 from n in n2.Props
                                  let forsale = n.ForSale.Split(':')
                                  where forsale[0] == "T"
                                  let price = Convert.ToInt32(forsale[1])
                                  where (price >= MinPriceTrackBar.Value) && (price <= MaxPriceTrackBar.Value)
+                                 from n1 in n2.Residents
+                                 where n1.Id == n.OwnerId
                                  orderby price ascending
                                  select new CommunityInfo()
                                  {
-                                     id = n.OwnerId,
+                                     FullName = n1.FullName,
                                      property = n,
                                      type = (n is Business) ? 0 : (n is School) ? 1 : (n is House) ? 2 : 3
                                  };
 
-            var sycamoreSaleList = from n in SycamoreCommunity.Props
-                                   let forsale = n.ForSale.Split(':')
-                                   where forsale[0] == "T"
-                                   let price = Convert.ToInt32(forsale[1])
-                                   where (price >= MinPriceTrackBar.Value) && (price <= MaxPriceTrackBar.Value)
-                                   orderby price ascending
-                                   select new CommunityInfo()
-                                   {
-                                       id = n.OwnerId,
-                                       property = n,
-                                       type = (n is Business) ? 0 : (n is School) ? 1 : (n is House) ? 2 : 3
-                                   };
-
-            QueryOutputTextbox.AppendText("\r\n\t\t*** DEKALB ***\r\n");
-            printList(dekalbSaleList.ToList(), DekalbCommunity);
-            QueryOutputTextbox.AppendText("\r\n\t\t*** SYCAMORE ***\r\n");
-            printList(sycamoreSaleList.ToList(), SycamoreCommunity);
-            QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
+            var fullList = List.GroupBy(p => p.property.City);
+            printList(fullList);
             
         }
 
-        private void printList(List<CommunityInfo> comm, Community com)
+        private void printList(IEnumerable<IGrouping<string, CommunityInfo> > comm)
         {
-            foreach (var pro in comm)
+            foreach (var community in comm)
             {
-                var id = from n in com.Residents
-                         where (pro.id == n.Id)
-                         select n.FullName;
-                foreach (var v in id)
-                    pro.FullName = v;
-
+                QueryOutputTextbox.AppendText(string.Format("\r\n\t\t*** {0} ***\r\n", community.Key));
+                foreach (var pro in community)
                 if (ResidentialtCheckBox.Checked == true && (pro.type == 2 || pro.type == 3))
                 {
                     QueryOutputTextbox.AppendText(string.Format("{0}{1} {2}, {3} {4}\r\n",
@@ -507,6 +494,7 @@ namespace Assign_3
                             ));
                 }
             }
+            QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
         }
 
 
