@@ -48,6 +48,4 @@ namespace Assign_3
         public string YearBuild { get; set; }
         public BusinessType Type { get; set; }
     }
-
-  
 }
