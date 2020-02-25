@@ -24,6 +24,7 @@ namespace Assign_3
         public bool proType { get; set; }
         public string apt { get; set; }
     }
+
     //testing may not need this
     class residentialOOT
     {
