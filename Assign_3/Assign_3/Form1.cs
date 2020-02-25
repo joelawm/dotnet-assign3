@@ -509,57 +509,57 @@ namespace Assign_3
             }
         }
 
-        
+
+        class CommunityInfo2
+        {
+            string fullName = "N/A";
+            public uint id { get; set; }
+            public string FullName { get; set; }
+            public string city { get; set; }
+            public Property property { get; set; }
+            public int type { get; set; }
+            public uint[] lds { get; set; }
+        }
+
         //out of towners button click
         private void TownersQueryButton_Click(object sender, EventArgs e)
         {
             QueryOutputTextbox.Text = string.Format("Properties Ownded by Out-Of-Towners\r\n" +
                                                     "------------------------------------------------------------------------------------------\r\n");
-            //create both of the list
-            List<residentialOOT> DList = ResidentialListOOT(DekalbCommunity);
-            List<residentialOOT> SList = ResidentialListOOT(SycamoreCommunity);
 
-            //combine the 2 lists
-            DList.AddRange(SList);
+            var dekalbSaleList = from n in DekalbCommunity.Props
+                                 where (n is Business)
+                                 select new CommunityInfo2()
+                                 {
+                                     id = n.OwnerId,
+                                     property = n,
+                                     type = (n is Business) ? 0 : (n is School) ? 1 : (n is House) ? 2 : 3,
+                                     city = n.City
+                                 };
 
+            PrintOOT(dekalbSaleList.ToList(), DekalbCommunity);
 
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
         }
 
-        //list of residents
-        private List<residentialOOT> ResidentialListOOT(Community comm)
+        private void PrintOOT(List<CommunityInfo2> comm, Community com)
         {
-            var property = from pro in comm.Props
-                           where (pro is House) || (pro is Apartment) || (pro is Business) || (pro is School)
-                           let proType = (pro is House) ? true : false
-                           let garage = (proType) ? (pro as House).Garage : false
-                           let attachGarage = (garage) ? (pro as House).AttatchedGarage : false
-                           from res in comm.Residents
-                           where (res.Id == pro.OwnerId)
-                           select new residentialOOT()
-                           {
-                               StreetAddr = pro.StreetAddr,
-                               City = pro.City,
-                               State = pro.State,
-                               Zip = pro.Zip,
-                               AttachedGarage = attachGarage,
-                               Garage = garage,
-                               Bed = (pro as Residential).Bedrooms,
-                               Bath = (pro as Residential).Baths,
-                               Sqft = (pro as Residential).Sqft,
-                               Flood = (proType) ? (pro as House).Flood : 0,
-                               ForSale = pro.ForSale,
-                               FullName = res.FullName,
-                               Residencelds = res.Residencelds,
-                               Name = (pro as Business).Name,
-                               YearBuild = (pro as Business).YearEstablished,
-                               Type = (pro as Business).Type,
-                               proType = proType,
-                               apt = (proType) ? null : (pro as Apartment).Unit
-                           };
+            foreach (var pro in comm)
+            {
+                var id = from res in com.Residents
+                         where (pro.id == res.Id)
+                         select new CommunityInfo2()
+                         {
+                             lds = res.Residencelds
+                         };
 
-            return property.ToList();
+                id.ToList();
+                foreach (var person in id)
+                {
+                    
+                }
+                QueryOutputTextbox.AppendText(pro.city);
+            }
         }
-        
     }
 }
