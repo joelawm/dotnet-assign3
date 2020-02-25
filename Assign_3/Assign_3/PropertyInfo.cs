@@ -6,21 +6,6 @@ using System.Threading.Tasks;
 
 namespace Assign_3
 {
-    class BussinessInfo
-    {
-        public string StreetAddr { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
-        public string Name { get; set; }
-        public double distance { get; set; }
-        public uint OwnerId { get; set; }
-        public string YearBuild { get; set; }
-        public BusinessType Type { get; set; }
-        public uint Position { get; set; }
-        public string FullName { get; set; }
-        public string ForSale { get; set; }
-    }
     class residentialInfo
     {
         public string StreetAddr { get; set; }
@@ -39,7 +24,6 @@ namespace Assign_3
         public bool proType { get; set; }
         public string apt { get; set; }
     }
-
     //testing may not need this
     class residentialOOT
     {
@@ -64,17 +48,5 @@ namespace Assign_3
         public BusinessType Type { get; set; }
     }
 
-    class SchoolInfo
-    {
-        public string StreetAddr { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
-        public string Name { get; set; }
-        public string YearBuild { get; set; }
-        public SchoolType Type { get; set; }
-        public string FullName { get; set; }
-        public string ForSale { get; set; }
-        public uint enrroled { get; set; }
-    }
+  
 }
