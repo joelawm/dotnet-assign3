@@ -450,14 +450,7 @@ namespace Assign_3
                                        property = n,
                                        type = (n is Business) ? 0 : (n is School) ? 1 : (n is House) ? 2 : 3
                                    };
-            /*
-            foreach ( var dekal in sycamoreSaleList)
-            {
-                if (dekal.property is Business)
-                    MessageBox.Show((dekal.property as Business).Name);
-            }
-            */
-            
+
             QueryOutputTextbox.AppendText("\r\n\t\t*** DEKALB ***\r\n");
             printList(dekalbSaleList.ToList(), DekalbCommunity);
             QueryOutputTextbox.AppendText("\r\n\t\t*** SYCAMORE ***\r\n");
