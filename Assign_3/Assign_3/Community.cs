@@ -52,6 +52,15 @@ namespace Assign_3
             set => residents = value;
         }
 
+        //compare residence
+        public bool CompareResidenceToJob(string comp1)
+        {
+
+
+            return true;
+        }
+
+
         //Compareto method
         public int CompareTo(object alpha)
         {
