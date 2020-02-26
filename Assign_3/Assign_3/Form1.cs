@@ -387,7 +387,6 @@ namespace Assign_3
         {
             foreach (var pro in selector)
             {
-
                 QueryOutputTextbox.AppendText(string.Format("{0}{1} {2}, {3} {4}   {5} units away\r\n",
                             pro.property.StreetAddr, (pro.type == 0) ? "" : " #Apt " + (pro.property as Apartment).Unit + ' ', 
                             pro.property.City, pro.property.State, pro.property.Zip, pro.distance
@@ -497,46 +496,61 @@ namespace Assign_3
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
         }
 
-
-        class CommunityInfo2
-        {
-            string fullName = "N/A";
-            public uint id { get; set; }
-            public string FullName { get; set; }
-            public string city { get; set; }
-            public Property property { get; set; }
-            public int type { get; set; }
-            public uint[] lds { get; set; }
-        }
-
         //out of towners button click
         private void TownersQueryButton_Click(object sender, EventArgs e)
         {
             QueryOutputTextbox.Text = string.Format("Properties Ownded by Out-Of-Towners\r\n" +
                                                     "------------------------------------------------------------------------------------------\r\n");
+
             //output based on owner ids
-            List<uint> test = DekalbCommunity.CompareResidenceToJob();
+            List<uint> idsfound = DekalbCommunity.CompareResidenceToJob(SycamoreCommunity);
 
-            foreach (int i in test)
-            {
-                QueryOutputTextbox.AppendText(i.ToString() + " ");
-            }
-            /*
-            var dekalbSaleList = from n in DekalbCommunity.Props
-                                 where (n is Business)
-                                 select new CommunityInfo2()
-                                 {
-                                     id = n.OwnerId,
-                                     property = n,
-                                     type = (n is Business) ? 0 : (n is School) ? 1 : (n is House) ? 2 : 3,
-                                     city = n.City
-                                 };
-                                 */
-
-            //lookup the Owner id
-            //PrintOOT(dekalbSaleList.ToList());
+            //pull in the data to find
+            PrintOOT(idsfound);
 
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
+        }
+
+        private void PrintOOT(List<uint> idslist)
+        {
+            List<Community> communities = new List<Community>();
+            communities.Add(DekalbCommunity);
+            communities.Add(SycamoreCommunity);
+
+            var List = from n2 in communities
+                       from n in n2.Props
+                       from n1 in n2.Residents
+                       where (n is Business)
+                       select new BusinessInfo()
+                       {
+                           FullName = n1.FullName,
+                           StreetAddr = n.StreetAddr,
+                           City = n.City,
+                           State = n.State,
+                           Zip = n.Zip,
+                           Id = n.Id,
+                           ForSale = n.ForSale,
+                           property = n,
+                           type = (n is Business) ? 0 : (n is School) ? 1 : (n is House) ? 2 : 3
+                       };
+
+            foreach (int i in idslist)
+            {
+                foreach (var pro in List.ToList())
+                {
+                    if (pro.Id == idslist[i])
+                    {
+                        QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}\r\n",
+                        pro.StreetAddr, pro.City, pro.State, pro.Zip));
+
+                        //QueryOutputTextbox.AppendText(string.Format("Ownwer: {0} |  ${1}\r\n", pro.FullName, pro.ForSale.Split(':')[1]));
+
+
+                        QueryOutputTextbox.AppendText(string.Format("{0}, a {1} type of business, established in {2}\r\n\r\n",
+                                (pro.property as Business).Name, (pro.property as Business).Type, (pro.property as Business).YearEstablished));
+                    }
+                }
+            }
         }
     }
 }
