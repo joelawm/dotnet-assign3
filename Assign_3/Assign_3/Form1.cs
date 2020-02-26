@@ -514,7 +514,14 @@ namespace Assign_3
         {
             QueryOutputTextbox.Text = string.Format("Properties Ownded by Out-Of-Towners\r\n" +
                                                     "------------------------------------------------------------------------------------------\r\n");
+            //output based on owner ids
+            List<uint> test = DekalbCommunity.CompareResidenceToJob();
 
+            foreach (int i in test)
+            {
+                QueryOutputTextbox.AppendText(i.ToString() + " ");
+            }
+            /*
             var dekalbSaleList = from n in DekalbCommunity.Props
                                  where (n is Business)
                                  select new CommunityInfo2()
@@ -524,30 +531,12 @@ namespace Assign_3
                                      type = (n is Business) ? 0 : (n is School) ? 1 : (n is House) ? 2 : 3,
                                      city = n.City
                                  };
+                                 */
 
-            PrintOOT(dekalbSaleList.ToList(), DekalbCommunity);
+            //lookup the Owner id
+            //PrintOOT(dekalbSaleList.ToList());
 
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
-        }
-
-        private void PrintOOT(List<CommunityInfo2> comm, Community com)
-        {
-            foreach (var pro in comm)
-            {
-                var id = from res in com.Residents
-                         where (pro.id == res.Id)
-                         select new CommunityInfo2()
-                         {
-                             lds = res.Residencelds
-                         };
-
-                id.ToList();
-                foreach (var person in id)
-                {
-                    
-                }
-                QueryOutputTextbox.AppendText(pro.city);
-            }
         }
     }
 }

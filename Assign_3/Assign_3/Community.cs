@@ -53,11 +53,32 @@ namespace Assign_3
         }
 
         //compare residence
-        public bool CompareResidenceToJob(string comp1)
+        public List<uint> CompareResidenceToJob()
         {
+            //variables
+            SortedSet<Property> properties = new SortedSet<Property>();
+            SortedSet<Person> person = new SortedSet<Person>();
+            List<uint> Ids = new List<uint>();
 
+            //Loop through residence Id to find the residences.
+            foreach (var res in Residents)
+            {
+                foreach (var prop in props)
+                {
+                    if (prop.OwnerId == res.Id)
+                    {
+                        //Take the home residence
+                        uint[] list = res.Residencelds;
 
-            return true;
+                        // Lookup the business address for this person.
+                        if (prop.Id != res.Residencelds[0])  //We assume this is only size of 1.
+                        {
+                            Ids.Add(prop.Id);
+                        }
+                    }
+                }
+            }
+            return Ids;
         }
 
 
