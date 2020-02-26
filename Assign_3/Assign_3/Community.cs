@@ -53,15 +53,33 @@ namespace Assign_3
         }
 
         //compare residence
-        public List<uint> CompareResidenceToJob()
+        public List<uint> CompareResidenceToJob(Community comm)
         {
             //variables
-            SortedSet<Property> properties = new SortedSet<Property>();
-            SortedSet<Person> person = new SortedSet<Person>();
             List<uint> Ids = new List<uint>();
 
+            //compare to Sycamore
             //Loop through residence Id to find the residences.
             foreach (var res in Residents)
+            {
+                foreach (var prop in comm.Props)
+                {
+                    if (prop.OwnerId == res.Id)
+                    {
+                        //Take the home residence
+                        uint[] list = res.Residencelds;
+
+                        // Lookup the business address for this person.
+                        if (prop.Id != res.Residencelds[0])  //We assume this is only size of 1.
+                        {
+                            Ids.Add(prop.Id);
+                        }
+                    }
+                }
+            }
+
+            //now compare to dekalb
+            foreach (var res in comm.residents)
             {
                 foreach (var prop in props)
                 {
@@ -78,6 +96,8 @@ namespace Assign_3
                     }
                 }
             }
+
+            //return the compared Ids
             return Ids;
         }
 
