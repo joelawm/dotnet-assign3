@@ -32,7 +32,7 @@ namespace Assign_3
         }
 
         //for creating a person object
-        public Person(uint id, DateTime bd, string l, string f, string o, string resId)
+        public Person(uint id, DateTime bd, string f, string l, string o, string resId)
         {
             _id = id;
             _birthday = bd;
