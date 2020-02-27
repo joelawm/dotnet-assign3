@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assign_3
 {
+    //creat the data type
     enum SchoolType { Elementary, HighSchool, CommunityCollege, University }
     class School : Property
     {
@@ -13,6 +14,8 @@ namespace Assign_3
         readonly SchoolType type;
         string yearEstablished;
         uint enrolled;
+
+        //create the object
         public School(uint id, uint x, uint y, uint o, string sa, string c, string st, string z, string fs,
             string cName, SchoolType stype, string sYear, uint sEnrolled)
             : base(id, x, y, o, sa, c, st, z, fs)
@@ -23,6 +26,7 @@ namespace Assign_3
             Enrolled = sEnrolled;
         }
 
+        //GET/SETS
         public string Name
         {
             get => name;

@@ -8,11 +8,13 @@ namespace Assign_3
 {
     public partial class Form1 : Form
     {
+        //communites in use
         public static Community DekalbCommunity;
         public static Community SycamoreCommunity;
 
         public Form1()
         {
+            //intilaize everything
             InitializeComponent();
             InitializeCommunity();
         }
@@ -30,7 +32,10 @@ namespace Assign_3
         // Cleck forsale dropdown and show all the properties
         private void ForSaleCombobox_DropDown(object sender, EventArgs e)
         {
+            //clear the combobox
             ForSaleCombobox.Items.Clear();
+
+            //output for the box
             string[] propertyList = FindProperties(DekalbCommunity);
             ForSaleCombobox.Items.Add("Dekalb:");
             ForSaleCombobox.Items.Add("----------");
@@ -39,9 +44,10 @@ namespace Assign_3
                 if (stAddr != null)
                     ForSaleCombobox.Items.Add(stAddr);
             }
-
+            //add all the itesm
             ForSaleCombobox.Items.Add("");
 
+            //second output
             propertyList = FindProperties(SycamoreCommunity);
             ForSaleCombobox.Items.Add("Sycamore:");
             ForSaleCombobox.Items.Add("----------");
@@ -52,8 +58,10 @@ namespace Assign_3
             }
         }
 
+        //find properties based on wether or not it is a prop
         private string[] FindProperties(Community comm)
         {
+            //list of props
             string[] propertyList = new string[30];
             ushort index = 0;
 
@@ -63,7 +71,7 @@ namespace Assign_3
 
             foreach (var property in houseProperty)
                 propertyList[index++] = property.StreetAddr;
-
+            //add to the index
             propertyList[index++] = "";
 
             var apartmentProperty = from property in comm.Props
@@ -73,15 +81,18 @@ namespace Assign_3
             foreach (var property in apartmentProperty)
                 propertyList[index++] = property.StreetAddr + " # " + ((Apartment)property).Unit;
 
+            //return the list made
             return propertyList;
         }
 
         // action after clicking the 3th query button
         private void BusinessQueryButton_Click(object sender, EventArgs e)
         {
+            //exit if null
             if (ForSaleCombobox.SelectedItem == null)
                 return;
 
+            //list of string addresses
             string[] stAddr = ForSaleCombobox.SelectedItem.ToString().Split(new[] { " # " }, StringSplitOptions.None);
             ushort distance = Convert.ToUInt16(BusinessDistanceUpDown.Value);
 
@@ -95,11 +106,13 @@ namespace Assign_3
             else
                 comm = DekalbCommunity;
 
+            //create the list
             SortedList<int, CommunityInfo> propertyList = new SortedList<int, CommunityInfo>();
             List<Community> communities = new List<Community>();
             communities.Add(DekalbCommunity);
             communities.Add(SycamoreCommunity);
 
+            //query
             var list = from res in comm.Props
                         where (res is House) || (res is Apartment)
                         where (res.StreetAddr == stAddr[0])
@@ -121,7 +134,7 @@ namespace Assign_3
                             distance = (int)Math.Sqrt(x + y),
                             type = (pro is House) ? 0 : 1
                         };
-
+            //output
             PrintNearbyBusiness(list);
 
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
@@ -129,13 +142,14 @@ namespace Assign_3
 
         private void PrintNearbyBusiness(IEnumerable<CommunityInfo> selector)
         {
+            //go through each element in the list
             foreach (var bus in selector)
             {
 
                 QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}\r\n",
                     bus.property.StreetAddr, bus.property.City, bus.property.State, bus.property.Zip));
 
-                QueryOutputTextbox.AppendText(string.Format("Ownwe: {0} |  ", bus.FullName));
+                QueryOutputTextbox.AppendText(string.Format("Owner: {0} |  ", bus.FullName));
 
 
                 QueryOutputTextbox.AppendText(string.Format("{0} units away, with {1} open positions \r\n{2}, " +
@@ -167,12 +181,15 @@ namespace Assign_3
         // this displays the value of the max trace bar
         private void MaxPriceTrackBar_Scroll(object sender, EventArgs e)
         {
+            //out and make sure it outputs correctly
             MaxPriceLabel.Text = "Max Price: " + String.Format("{0:C0}", MaxPriceTrackBar.Value);
+
+            //change vlaue and set to disabled
             if (MaxPriceTrackBar.Value <= MinPriceTrackBar.Value)
             {
                 MinPriceTrackBar.Enabled = false;
                 MinPriceTrackBar.Value = MaxPriceTrackBar.Value;
-                MinPriceLabel.Text = "Max Price: " + String.Format("{0:C0}", MaxPriceTrackBar.Value);
+                MinPriceLabel.Text = "Min Price: " + String.Format("{0:C0}", MaxPriceTrackBar.Value);
             }
             else
             {
@@ -203,13 +220,14 @@ namespace Assign_3
 
             //reorder the list
             //DList = DList.OrderBy(i => i.ForSale).ToList();
-
+             
             //go throught the list and print if needed
             foreach (var pro in DList)
             {
                 //split the first and last name for output
                 string[] splitted = pro.FullName.Split(' ');
 
+                //checking data based on the list
                 if (HouseCheckBox.Checked == true && pro.proType == true && pro.Bath >= BathUpDown.Value && pro.Bed >= BedUpDown.Value && pro.Sqft >= SqFtUpDown.Value)
                 {
                     if(GarageCheckBox.Checked == true && DetachedGarageCheckBox.Checked == false && pro.Garage == true && pro.AttachedGarage == false)
@@ -248,6 +266,7 @@ namespace Assign_3
                 }
             }
 
+            //error output
             if (results == 0)
             {
                 QueryOutputTextbox.AppendText("Your query yielded no matches.\r\n");
@@ -256,6 +275,7 @@ namespace Assign_3
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
         }
 
+        //this creates a residential list of each community
         private List<residentialInfo> ResidentialPara(Community comm)
         {
             var property = from pro in comm.Props
@@ -290,8 +310,10 @@ namespace Assign_3
             return property.ToList();
         }
 
+        //dropdown combo for the school and finding each school
         private void SchoolCombobox_DropDown(object sender, EventArgs e)
         {
+            //clear the box
             SchoolCombobox.Items.Clear();
             string[] propertyList = FindSchool(DekalbCommunity);
             SchoolCombobox.Items.Add("Dekalb:");
@@ -301,9 +323,10 @@ namespace Assign_3
                 if (stAddr != null)
                     SchoolCombobox.Items.Add(stAddr);
             }
-
+            //add elements
             SchoolCombobox.Items.Add("");
 
+            //add content
             propertyList = FindSchool(SycamoreCommunity);
             SchoolCombobox.Items.Add("Sycamore:");
             SchoolCombobox.Items.Add("----------");
@@ -314,11 +337,13 @@ namespace Assign_3
             }
         }
 
+        //find the school based on teh communtity
         private string[] FindSchool(Community comm)
         {
             string[] schoolList = new string[10];
             ushort index = 0;
 
+            //query
             var schoolProperty = from property in comm.Props
                                  where (property is School)
                                  select property;
@@ -326,20 +351,25 @@ namespace Assign_3
             foreach (var property in schoolProperty)
                 schoolList[index++] = ((School)property).Name;
 
+            //return the list
             return schoolList;
         }
 
+        //scholl button click finds the distance betweeen schools
         private void SchoolQueryButton_Click(object sender, EventArgs e)
         {
+            //if null
             if (SchoolCombobox.SelectedItem == null)
                 return;
 
             string schoolName = SchoolCombobox.Text.ToString();
             int distance = Convert.ToInt32(SchoolDistanceUpDown.Value);
 
+            //output
             QueryOutputTextbox.Text = string.Format("Residences for sale within {1} units of distance\r\n\tfrom {0}\r\n" +
                 "------------------------------------------------------------------------------------------\r\n", schoolName, distance);
 
+            //go throught elements
             int index = 0;
             foreach (var v in SchoolCombobox.Items)
                 if (v.ToString() != "")
@@ -347,8 +377,10 @@ namespace Assign_3
                 else
                     break;
 
+            
             SortedList<int, CommunityInfo> propertyList = new SortedList<int, CommunityInfo>();
 
+            //make communites
             List<Community> communities = new List<Community>();
             communities.Add(DekalbCommunity);
             communities.Add(SycamoreCommunity);
@@ -358,7 +390,7 @@ namespace Assign_3
                 comm = DekalbCommunity;
             else
                 comm = SycamoreCommunity;
-
+            //query
             var list = from school in comm.Props
                         where (school is School) && ((school as School).Name == schoolName)
                         from n in communities
@@ -380,13 +412,16 @@ namespace Assign_3
                             type = (pro is House) ? 0 : 1
                         };
 
+            //print the output
             PrintNearbyForSale(list);
         }
 
         private void PrintNearbyForSale(IEnumerable <CommunityInfo> selector)
         {
+            //go through the elements
             foreach (var pro in selector)
             {
+                //output
                 QueryOutputTextbox.AppendText(string.Format("{0}{1} {2}, {3} {4}   {5} units away\r\n",
                             pro.property.StreetAddr, (pro.type == 0) ? "" : " #Apt " + (pro.property as Apartment).Unit + ' ', 
                             pro.property.City, pro.property.State, pro.property.Zip, pro.distance
@@ -403,6 +438,7 @@ namespace Assign_3
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
         }
         
+        //community list target
         class CommunityInfo
         { 
             string fullName = "N/A";
@@ -420,12 +456,12 @@ namespace Assign_3
                 "------------------------------------------------------------------------------------------\r\n", 
                 String.Format("{0:C0}", MinPriceTrackBar.Value), String.Format("{0:C0}", MaxPriceTrackBar.Value));
 
-
+            //list a communty and add them
             List<Community> communities = new List<Community>();
             communities.Add(DekalbCommunity);
             communities.Add(SycamoreCommunity);
 
-
+            //query
             var l = communities.GroupBy(p => p.Name);
 
             var List =           from n2 in communities
@@ -444,19 +480,26 @@ namespace Assign_3
                                      type = (n is Business) ? 0 : (n is School) ? 1 : (n is House) ? 2 : 3
                                  };
 
+            //group it
             var fullList = List.GroupBy(p => p.property.City);
+
+            //output
             printList(fullList);
             
         }
 
         private void printList(IEnumerable<IGrouping<string, CommunityInfo> > comm)
         {
+            //variables temp
+            int results = 0;
+            //go through the objects
             foreach (var community in comm)
             {
                 QueryOutputTextbox.AppendText(string.Format("\r\n\t\t*** {0} ***\r\n", community.Key));
                 foreach (var pro in community)
                 if (ResidentialtCheckBox.Checked == true && (pro.type == 2 || pro.type == 3))
                 {
+                        results += 1;
                     QueryOutputTextbox.AppendText(string.Format("{0}{1} {2}, {3} {4}\r\n",
                             pro.property.StreetAddr, (pro.type == 2) ? "" : " #Apt " + (pro.property as Apartment).Unit + ' ', pro.property.City, pro.property.State, pro.property.Zip
                             ));
@@ -471,7 +514,8 @@ namespace Assign_3
                 }
                 else if (SchoolCheckBox.Checked == true && pro.type == 1)
                 {
-                    QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3} Ownwer: {4}\r\n",
+                        results += 1;
+                        QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3} Ownwer: {4}\r\n",
                     pro.property.StreetAddr, pro.property.City, pro.property.State, pro.property.Zip, pro.FullName));
 
                     QueryOutputTextbox.AppendText(string.Format("{0}, established in {1}\r\n",
@@ -482,7 +526,8 @@ namespace Assign_3
                 }
                 else if (BusinessCheckBox.Checked && pro.type == 0)
                 {
-                    QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}\r\n",
+                        results += 1;
+                        QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}\r\n",
                     pro.property.StreetAddr, pro.property.City, pro.property.State, pro.property.Zip));
 
                     QueryOutputTextbox.AppendText(string.Format("Ownwer: {0} |  ${1}\r\n", pro.FullName, pro.property.ForSale.Split(':')[1]));
@@ -493,6 +538,13 @@ namespace Assign_3
                             ));
                 }
             }
+
+            //error output
+            if (results == 0)
+            {
+                QueryOutputTextbox.AppendText("\r\nYour query yielded no matches.\r\n");
+            }
+
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
         }
 
@@ -511,16 +563,19 @@ namespace Assign_3
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
         }
 
+        //output the OOT
         private void PrintOOT(List<uint> idslist)
         {
+            //create the list
             List<Community> communities = new List<Community>();
             communities.Add(DekalbCommunity);
             communities.Add(SycamoreCommunity);
 
+            //query
             var List = from n2 in communities
                        from n in n2.Props
                        from n1 in n2.Residents
-                       where (n is Business)
+                       where n1.Id != n.OwnerId
                        select new BusinessInfo()
                        {
                            FullName = n1.FullName,
@@ -534,20 +589,39 @@ namespace Assign_3
                            type = (n is Business) ? 0 : (n is School) ? 1 : (n is House) ? 2 : 3
                        };
 
+            //go through the ids
             foreach (int i in idslist)
             {
+                //match them to the element
                 foreach (var pro in List.ToList())
                 {
-                    if (pro.Id == idslist[i])
+                    if (pro.Id == i)
                     {
+                        //split the first and last name for output
+                        string[] splitted = pro.FullName.Split(' ');
+
+                        //set the price if 0
+                        string price = ""; 
+                        if (pro.ForSale.Split(':')[0] == "T")
+                        {
+                            price = pro.ForSale.Split(':')[1];
+                        }
+                        else if (pro.ForSale.Split(':')[0] == "F")
+                        {
+                            price = "0";
+                        }
+
+                        //output
                         QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}\r\n",
                         pro.StreetAddr, pro.City, pro.State, pro.Zip));
 
-                        //QueryOutputTextbox.AppendText(string.Format("Ownwer: {0} |  ${1}\r\n", pro.FullName, pro.ForSale.Split(':')[1]));
+                        QueryOutputTextbox.AppendText(string.Format("Ownwer: {0}, {1} |       {2:C0}\r\n", splitted[1], splitted[0].Trim(new char[] { ',' }), Int32.Parse(price)));
 
 
                         QueryOutputTextbox.AppendText(string.Format("{0}, a {1} type of business, established in {2}\r\n\r\n",
                                 (pro.property as Business).Name, (pro.property as Business).Type, (pro.property as Business).YearEstablished));
+
+                        break;
                     }
                 }
             }

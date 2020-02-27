@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assign_3
 {
+    //resident model
     class residentialInfo
     {
         public string StreetAddr { get; set; }
@@ -25,7 +26,7 @@ namespace Assign_3
         public string apt { get; set; }
     }
 
-    //testing may not need this
+    //business model
     class BusinessInfo
     {
         public string StreetAddr { get; set; }
