@@ -447,10 +447,10 @@ namespace Assign_3
 
                 QueryOutputTextbox.AppendText(string.Format("Owner: {0} | ", pro.FullName));
 
-                QueryOutputTextbox.AppendText(string.Format("{0} bed, {1} bath, {2} sq.ft \r\n {3} : {4}   ${5}\r\n\r\n",
+                QueryOutputTextbox.AppendText(string.Format("{0} bed, {1} bath, {2} sq.ft \r\n {3} : {4}   {5:C0}\r\n\r\n",
                             (pro.property as Residential).Bedrooms, (pro.property as Residential).Baths, (pro.property as Residential).Sqft,
                             (pro.type == 1) ? "With out garage" : ((pro.property as House).AttatchedGarage == true) ? "With attach Garage" : "With garage",
-                            (pro.type == 1) ? "" : (pro.property as House).Flood + " floors.", pro.property.ForSale.Split(':')[1]
+                            (pro.type == 1) ? "" : (pro.property as House).Flood + " floors.", Int32.Parse(pro.property.ForSale.Split(':')[1])
                             ));
             }
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
@@ -538,10 +538,10 @@ namespace Assign_3
 
                     QueryOutputTextbox.AppendText(string.Format("Owner: {0} | ", pro.FullName));
 
-                    QueryOutputTextbox.AppendText(string.Format("{0} bed, {1} bath, {2} sq.ft \r\n {3} : {4}   ${5}\r\n\r\n",
+                    QueryOutputTextbox.AppendText(string.Format("{0} bed, {1} bath, {2} sq.ft \r\n {3} : {4}   {5:C0}\r\n\r\n",
                             (pro.property as Residential).Bedrooms, (pro.property as Residential).Baths, (pro.property as Residential).Sqft,
                             (pro.type == 3) ? "With out garage" : ((pro.property as House).AttatchedGarage == true) ? "With attach Garage" : "With garage",
-                            (pro.type == 3) ? "" : (pro.property as House).Flood + " floors.", pro.property.ForSale.Split(':')[1]
+                            (pro.type == 3) ? "" : (pro.property as House).Flood + " floors.", Int32.Parse(pro.property.ForSale.Split(':')[1])
                             ));
                 }
                 else if (SchoolCheckBox.Checked == true && pro.type == 1)
@@ -553,8 +553,8 @@ namespace Assign_3
                     QueryOutputTextbox.AppendText(string.Format("{0}, established in {1}\r\n",
                             (pro.property as School).Name, (pro.property as School).YearEstablished));
 
-                    QueryOutputTextbox.AppendText(string.Format("{0} students enrooled  ${1}\r\n",
-                            (pro.property as School).Enrolled, pro.property.ForSale.Split(':')[1]));
+                    QueryOutputTextbox.AppendText(string.Format("{0} students enrooled  {1:C0}\r\n",
+                            (pro.property as School).Enrolled, Int32.Parse(pro.property.ForSale.Split(':')[1])));
                 }
                 else if (BusinessCheckBox.Checked && pro.type == 0)
                 {
@@ -562,7 +562,7 @@ namespace Assign_3
                         QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}\r\n",
                     pro.property.StreetAddr, pro.property.City, pro.property.State, pro.property.Zip));
 
-                    QueryOutputTextbox.AppendText(string.Format("Ownwer: {0} |  ${1}\r\n", pro.FullName, pro.property.ForSale.Split(':')[1]));
+                    QueryOutputTextbox.AppendText(string.Format("Ownwer: {0} |  {1:C0}\r\n", pro.FullName, Int32.Parse(pro.property.ForSale.Split(':')[1])));
 
 
                     QueryOutputTextbox.AppendText(string.Format("{0}, a {1} type of business, established in {2}\r\n\r\n",
@@ -614,7 +614,7 @@ namespace Assign_3
                 QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}\r\n",
                 pro.property.StreetAddr, pro.property.City, pro.property.State, pro.property.Zip));
 
-                QueryOutputTextbox.AppendText(string.Format("Ownwer: {0} |\t${1}\r\n", pro.FullName, (pro.forSale[0] == "T") ? pro.forSale[1] : "0"));
+                QueryOutputTextbox.AppendText(string.Format("Ownwer: {0} |\t{1:C0}\r\n", pro.FullName, (pro.forSale[0] == "T") ? Int32.Parse(pro.forSale[1]) : 0));
 
 
                 QueryOutputTextbox.AppendText(string.Format("{0}, a {1} type of business, established in {2}\r\n\r\n",
