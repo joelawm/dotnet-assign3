@@ -90,7 +90,10 @@ namespace Assign_3
         {
             //exit if null
             if (ForSaleCombobox.SelectedItem == null)
+            {
+                QueryOutputTextbox.Text = "You have not choose a school yet.";
                 return;
+            }
 
             //list of string addresses
             string[] stAddr = ForSaleCombobox.SelectedItem.ToString().Split(new[] { " # " }, StringSplitOptions.None);
@@ -125,7 +128,7 @@ namespace Assign_3
                         where (x + y) < Math.Pow(distance, 2)
                         from n1 in n.Residents
                         where n1.Id == pro.OwnerId
-                        orderby (x + y) ascending
+                        orderby (x + y) descending
                         select new CommunityInfo()
                         {
                             id = pro.Id,
@@ -142,6 +145,12 @@ namespace Assign_3
 
         private void PrintNearbyBusiness(IEnumerable<CommunityInfo> selector)
         {
+
+            if (!selector.Any())
+            {
+                QueryOutputTextbox.AppendText("Your Query Yeilded no Mathches");
+                return;
+            }
             //go through each element in the list
             foreach (var bus in selector)
             {
@@ -360,7 +369,10 @@ namespace Assign_3
         {
             //if null
             if (SchoolCombobox.SelectedItem == null)
+            {
+                QueryOutputTextbox.Text = "Please, choose a school ";
                 return;
+            }
 
             string schoolName = SchoolCombobox.Text.ToString();
             int distance = Convert.ToInt32(SchoolDistanceUpDown.Value);
@@ -402,7 +414,7 @@ namespace Assign_3
                         where (x + y) < Math.Pow(distance, 2)
                         from n1 in n.Residents
                         where n1.Id == pro.OwnerId
-                        orderby (x + y) ascending
+                        orderby (x + y) descending
                         select new CommunityInfo()
                         {
                             FullName = n1.FullName,
@@ -418,6 +430,12 @@ namespace Assign_3
 
         private void PrintNearbyForSale(IEnumerable <CommunityInfo> selector)
         {
+
+            if (!selector.Any())
+            {
+                QueryOutputTextbox.AppendText("Your Query Yeilded no Mathches");
+                return;
+            }
             //go through the elements
             foreach (var pro in selector)
             {
@@ -441,7 +459,6 @@ namespace Assign_3
         //community list target
         class CommunityInfo
         { 
-            string fullName = "N/A";
             public uint id { get; set; }
             public string FullName { get; set; }
             public Property property { get; set; }
@@ -452,6 +469,14 @@ namespace Assign_3
         //Click of the first price button Displaying price info on different properties.
         private void PriceQueryButton_Click(object sender, EventArgs e)
         {
+            if (!ResidentialtCheckBox.Checked &&
+                !SchoolCheckBox.Checked &&
+                !BusinessCheckBox.Checked)
+            {
+                QueryOutputTextbox.Text = "You atleast have to choose one of the checkboxes";
+                return;
+            }
+
             QueryOutputTextbox.Text = string.Format("Properties for sale within [ {0}, {1} ] price range.\r\n" +
                 "------------------------------------------------------------------------------------------\r\n", 
                 String.Format("{0:C0}", MinPriceTrackBar.Value), String.Format("{0:C0}", MaxPriceTrackBar.Value));
@@ -490,6 +515,13 @@ namespace Assign_3
 
         private void printList(IEnumerable<IGrouping<string, CommunityInfo> > comm)
         {
+
+            if (!comm.Any())
+            {
+                QueryOutputTextbox.AppendText("Your Query Yeilded no Mathches");
+                return;
+            }
+
             //variables temp
             int results = 0;
             //go through the objects
@@ -554,76 +586,39 @@ namespace Assign_3
             QueryOutputTextbox.Text = string.Format("Properties Ownded by Out-Of-Towners\r\n" +
                                                     "------------------------------------------------------------------------------------------\r\n");
 
-            //output based on owner ids
-            List<uint> idsfound = DekalbCommunity.CompareResidenceToJob(SycamoreCommunity);
-
-            //pull in the data to find
-            PrintOOT(idsfound);
+            PrintOutTowner(SycamoreCommunity, DekalbCommunity);
+            PrintOutTowner(DekalbCommunity, SycamoreCommunity);
 
             QueryOutputTextbox.AppendText("\r\n### END OUTPUT ###");
         }
 
-        //output the OOT
-        private void PrintOOT(List<uint> idslist)
+        // print out the person who has the property but not live in the town
+        private void PrintOutTowner(Community comm1, Community comm2)
         {
-            //create the list
-            List<Community> communities = new List<Community>();
-            communities.Add(DekalbCommunity);
-            communities.Add(SycamoreCommunity);
-
             //query
-            var List = from n2 in communities
-                       from n in n2.Props
-                       from n1 in n2.Residents
-                       where n1.Id != n.OwnerId
-                       select new BusinessInfo()
+            var List = from res in comm1.Residents
+                       from pro in comm2.Props
+                       where res.Id == pro.OwnerId
+                       select new
                        {
-                           FullName = n1.FullName,
-                           StreetAddr = n.StreetAddr,
-                           City = n.City,
-                           State = n.State,
-                           Zip = n.Zip,
-                           Id = n.Id,
-                           ForSale = n.ForSale,
-                           property = n,
-                           type = (n is Business) ? 0 : (n is School) ? 1 : (n is House) ? 2 : 3
+                           forSale = pro.ForSale.Split(':'),
+                           FullName = res.FullName,
+                           property = pro,
+                           type = (pro is Business) ? 0 : (pro is School) ? 1 : (pro is House) ? 2 : 3
                        };
 
-            //go through the ids
-            foreach (int i in idslist)
+            //match them to the element
+            foreach (var pro in List)
             {
-                //match them to the element
-                foreach (var pro in List.ToList())
-                {
-                    if (pro.Id == i)
-                    {
-                        //split the first and last name for output
-                        string[] splitted = pro.FullName.Split(' ');
+                //output
+                QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}\r\n",
+                pro.property.StreetAddr, pro.property.City, pro.property.State, pro.property.Zip));
 
-                        //set the price if 0
-                        string price = ""; 
-                        if (pro.ForSale.Split(':')[0] == "T")
-                        {
-                            price = pro.ForSale.Split(':')[1];
-                        }
-                        else if (pro.ForSale.Split(':')[0] == "F")
-                        {
-                            price = "0";
-                        }
-
-                        //output
-                        QueryOutputTextbox.AppendText(string.Format("{0} {1}, {2} {3}\r\n",
-                        pro.StreetAddr, pro.City, pro.State, pro.Zip));
-
-                        QueryOutputTextbox.AppendText(string.Format("Ownwer: {0}, {1} |       {2:C0}\r\n", splitted[1], splitted[0].Trim(new char[] { ',' }), Int32.Parse(price)));
+                QueryOutputTextbox.AppendText(string.Format("Ownwer: {0} |\t${1}\r\n", pro.FullName, (pro.forSale[0] == "T") ? pro.forSale[1] : "0"));
 
 
-                        QueryOutputTextbox.AppendText(string.Format("{0}, a {1} type of business, established in {2}\r\n\r\n",
-                                (pro.property as Business).Name, (pro.property as Business).Type, (pro.property as Business).YearEstablished));
-
-                        break;
-                    }
-                }
+                QueryOutputTextbox.AppendText(string.Format("{0}, a {1} type of business, established in {2}\r\n\r\n",
+                        (pro.property as Business).Name, (pro.property as Business).Type, (pro.property as Business).YearEstablished));
             }
         }
     }
