@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assign_3
 {
+    //create the data type
     public enum BusinessType { Grocery, Bank, Repair, FastFood, DepartmentStore }
     public class Business : Property
     {
@@ -14,6 +15,7 @@ namespace Assign_3
         readonly string yearEstablished;
         uint activeRecruitment;
 
+        //new object creation
         public Business(uint id, uint x, uint y, uint o, string sa, string c, string st, string z, string fs, 
             string bName, BusinessType btype, string bYear, uint bActive)
             : base(id, x, y, o, sa, c, st, z, fs)
@@ -23,6 +25,8 @@ namespace Assign_3
             yearEstablished = bYear;
             ActiveRecruitment = bActive;
         }
+
+        //GE/SETS
         public string Name
         {
             get => name;
